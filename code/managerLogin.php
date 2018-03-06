@@ -1,4 +1,5 @@
 <!doctype html>
+<?php session_start(); ?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -62,18 +63,18 @@
 </head>
 
 <body>
-	
+
 	<div class="row" id="block">
-	<img src="../image/5ebb8acc24636e625352174223b87331.jpeg" />
- 	<form action="managerLoginCheck.php" method="post" >
-                 
-                    	<p>账号：</p>
-                    	<input class="inputStyle" type="text" name="ID"  /><br/>
-                    	<p>密码：</p>
-                    	<input class="inputStyle" type="password" name="password" /><br/>
-                    	<input class="btnStyle" type="submit" name="submit" value="登陆"/>
-                    	 
-                    </form>
-</div>
+		<img src="../image/5ebb8acc24636e625352174223b87331.jpeg"/>
+		<form action="managerLoginCheck.php" method="post">
+
+			<p>账号：</p>
+			<input class="inputStyle" type="text" name="ID"/><br/>
+			<p>密码：</p>
+			<input class="inputStyle" type="password" name="password"/><br/>
+			<input class="btnStyle" type="submit" name="submit" value="登陆"/>
+
+		</form>
+	</div>
 </body>
 </html>
