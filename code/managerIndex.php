@@ -171,8 +171,8 @@
 			</div>
 			<div id="collapsefFour" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="#" target="content">管理员列表</a><br/>
-					<a href="#" target="content">管理员添加</a>
+					<a href="managerList.php" target="content">管理员列表</a><br/>
+					<a href="addManager.php" target="content">管理员添加</a>
 				</div>
 			</div>
 		</div>

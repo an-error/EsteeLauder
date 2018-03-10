@@ -18,7 +18,7 @@
 
         		$result = mysql_query( $sql );
         		$num = mysql_num_rows( $result );
-        		/*为什么说$result是空值（mysql_fetch_array）又说是boolean（mysql_num_rows）*/
+        		
 
         		if ( $num ) {
         			session_start();
