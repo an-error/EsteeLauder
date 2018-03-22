@@ -69,7 +69,7 @@
 		<form action="managerLoginCheck.php" method="post">
 
 			<p>账号：</p>
-			<input class="inputStyle" type="text" name="ID"/><br/>
+			<input class="inputStyle" type="text" name="id"/><br/>
 			<p>密码：</p>
 			<input class="inputStyle" type="password" name="password"/><br/>
 			<input class="btnStyle" type="submit" name="submit" value="登陆"/>

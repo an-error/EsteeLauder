@@ -104,7 +104,7 @@
 	</style>
 </head>
 
-<body>
+<body >
 
 	<img id="logo" src="../image/643e5703f4e6c6b3169cd4f2633d1e02.jpg">
 	<div id="header">
@@ -125,6 +125,20 @@
 	
 	
 	<div class="accordion nav" id="accordion2">
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse"
+                   data-parent="#accordion2" href="#">报表</a>
+            </div>
+           <!-- <div id="collapseZero" class="accordion-body collapse ">
+                <div class="accordion-inner">
+                    <a href="productionList.php" target="content">商品列表</a><br/>
+                    <a href="productionOperation.php" target="content">商品添加</a>
+                </div>
+            </div>-->
+        </div>
+
 		<div class="accordion-group">
 			<div class="accordion-heading">
 				<a class="accordion-toggle" data-toggle="collapse" 
@@ -133,7 +147,7 @@
 			<div id="collapseOne" class="accordion-body collapse ">
 				<div class="accordion-inner">
 					<a href="productionList.php" target="content">商品列表</a><br/>
-					<a href="productionOperation.php" target="content">商品添加</a>
+					<a href="addProduction.php" target="content">商品添加</a>
 				</div>
 			</div>
 		</div>
@@ -158,7 +172,7 @@
 			</div>
 			<div id="collapseThree" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="#" target="content">用户列表</a><br/>
+					<a href="userList.php" target="content">用户列表</a><br/>
 					<a href="#" target="content">用户添加</a>
 				</div>
 			</div>

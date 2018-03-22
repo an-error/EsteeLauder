@@ -89,7 +89,7 @@
     function isJson(str) {
         try {
             var obj=JSON.parse(str);
-            if(typeof obj === 'object' && obj ){
+            if(typeof obj == 'object' && obj ){
                 return true;
             }else{
                 return false;
@@ -161,10 +161,10 @@
     };
 
     document.getElementsByName('cancel')[0].onclick=function(){
-        /*var isCancel=confirm("是否取消此次操作？");
+        var isCancel=confirm("是否取消此次操作？");
         if(isCancel===true){
             history.go(-1);
-        }*/
+        }
     }
 	
 </script>

@@ -1,40 +1,34 @@
-<?php  
-        if ( isset( $_POST[ "submit" ] ) && $_POST[ "submit" ] == "登陆" ) {
+<?php
+if (isset($_POST["submit"]) && $_POST["submit"] == "登陆") {
 
 
-
-        	$ID = $_POST[ "ID" ];
-        	$password = $_POST[ "password" ];
-
-        	if ( $ID == "" && $password == "" ) {
-        		echo "<script>alert('请输入管理员账号或密码！'); history.go(-1);</script>";
-        	} else {
+    $id = $_POST["id"];
+    $password = $_POST["password"];
 
 
-        		include( "conn.php" );
+    if ($id == "" || $password == "") {
+        echo "<script>alert('请输入管理员账号或密码！'); history.go(-1);</script>";
+    } else {
 
-        		$sql = "select ID,password,name from manager where ID='" . $ID . "' and password='" . $password . "'";
+        include("conn.php");
+        $sql = "select id,password,name from manager where id=" . $id;
+        $result = $db->query($sql);
 
-
-        		$result = mysql_query( $sql );
-        		$num = mysql_num_rows( $result );
-        		
-
-        		if ( $num ) {
-        			session_start();
-        			$row = mysql_fetch_array( $result ); //将数据以索引方式储存在数组中 
-        			$_SESSION[ 'name' ] = $row[ 'name' ];
-        			echo "<script>window.location.href='managerIndex.php' ;</script>";
-
-        		} else {
-        			echo "<script>alert('账号或密码不正确！');history.go(-1);</script>";
-
-        		}
-        		mysql_close( $conn );
-        	}
+        $result = $result->fetch(PDO::FETCH_ASSOC);
+        if ($result['password'] == $_POST['password']) {
+            session_start();
+            $_SESSION['name'] = $result['name'];
+            echo "<script>window.location.href='managerIndex.php' ;</script>";
+        } else {
+            echo "<script>alert('账户或者密码不正确！');history.go(-1);</script>";
         }
-        /*else{
-        			echo "<script>alert('提交不成功！');history.go(-1);</script>";
-        		}*/
 
-        ?>
+        //query返回一个可以直接使用的多维数组。
+
+
+    }
+} else {
+    echo "<script>alert('提交不成功！');history.go(-1);</script>";
+}
+
+        		

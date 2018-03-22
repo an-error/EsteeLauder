@@ -6,6 +6,7 @@
 <link href="../module/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="../module/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../module/jquery.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 
 <body>
