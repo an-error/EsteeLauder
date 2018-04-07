@@ -11,10 +11,14 @@
     try{
         $db=new PDO('mysql:host=localhost;dbname=esteelauder','root',"lll777",
         array(PDO::ATTR_PERSISTENT=>true));
+        $db->query("set names utf8");
+        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
     }catch(PDOException $e){
         print "Error:".$e->getMessage()."<br/>";
         die();
     }
+
+
 
 
 	

@@ -8,7 +8,10 @@
 
 include('module.php');
 include('conn.php');
-
+$id=$_REQUEST['id'];
+$sql="select * from production where id='".$id."'";
+$statement=$db->query($sql);
+$result=$statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>
@@ -74,7 +77,7 @@ include('conn.php');
             display:block;
             margin:0 0 0 200px;
         }
-        #imgContent img{
+        #imgContent img,#previewContent img{
             width:100px;
             height:100px;
             display:inline-block;
@@ -88,54 +91,51 @@ include('conn.php');
         }
 
         input[name="submit"]{
-            display:block;
+            display:inline-block;
             width:100px;
             height:30px;
-            margin:100px 26% auto auto;
+            margin:100px auto 100px 400px ;
         }
 
-        input[name='pName']{
-            display:block;
-            width:350px;
-            height:30px;
-            margin-bottom: 50px;
+        input[name='back']{
+            display:inline-block;
+            margin-top:100px;
         }
-        fieldset{
-            display:block;
-            margin:20px;
-        }
+
+
     </style>
 </head>
 
 <body>
+<div id="send" style="display:none;"><?php echo $id?></div>
 <div id="content">
     <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
     <fieldset>
         <legend>商品名称：<span id="goodsName" class="error"></span></legend>
-        <p><input type="text" name="pName" /><span id="goodsName" class="error"></span></p>
+        <p>商品名称：<input type="text" name="pName" value="<?php echo $result['name']?>"/><span id="goodsName" class="error"></span></p>
     </fieldset>
 
     <fieldset>
         <legend>商品品牌：</legend>
         <div class="radio">
-            <input type="radio" id="radio1" name="brand" value="EsteeLauder" checked/>
+            <input type="radio" id="radio1" name="brand" value="EsteeLauder" <?php if($result['brand']!="Tom Ford" && $result['brand']!="Bobbi Brown")echo "checked"?>/>
             <label for="radio1"><img src="../image/esteeLauder.jpeg" /> </label>
         </div>
 
         <div class="radio">
-            <input type="radio" id="radio2" name="brand" value="Tom Ford"/>
+            <input type="radio" id="radio2" name="brand" value="Tom Ford" <?php if($result['brand']!="EsteeLauder" && $result['brand']!="Bobbi Brown")echo "checked"?>/>
             <label for="radio2"><img src="../image/TF.jpg" /> </label>
         </div>
 
         <div class="radio">
-            <input type="radio" id="radio3" name="brand" value="Bobbi Brown"/>
+            <input type="radio" id="radio3" name="brand" value="Bobbi Brown" <?php if($result['brand']!="EsteeLauder" && $result['brand']!="Tom Ford")echo "checked"?>/>
             <label for="radio3"><img src="../image/bobbiBrown.jpg" /> </label>
         </div>
 
     </fieldset>
    <fieldset>
-       <legend>分类：<span id="cateText"></span><span class="error" id="categories"></span></legend>
+       <legend>分类：<span id="cateText"><?php echo $result['categories']?></span><span class="error" id="categories"></span></legend>
      <div style="clear:left; width:400px;height:160px;">
 
          <ul class="major">
@@ -173,21 +173,29 @@ include('conn.php');
          </ul>
      </div>
    </fieldset>
-    <fieldset>
-        <legend>规格：<span class="error" id="size"></span></legend>
-        <input type="text" name="size" />
-    </fieldset>
+   <fieldset>
+      <legend>规格：<span class="error" id="size"></span></legend>
+      <input type="text" name="size"  value="<?php echo $result['size']?>"/>
+   </fieldset>
     <fieldset >
         <legend >图片上传<span class="error" id="myFile"></span></legend>
         <p>主图：<input type="file" name="pic" accept="image/jpeg,image/gif,image/png" onchange="preview(this)"/></p>
         <p>附图：<input type="file" name="files" accept="image/jpeg,image/gif,image/png" onchange="preview(this)" multiple/></p>
-        <div id="imgContent"></div>
+        <div id="imgContent">
+            <img src="<?php echo $result['img']?>" />
+            <img src="<?php if(!empty($result['img0']))echo $result['img0']?>"/>
+            <img src="<?php if(!empty($result['img1']))echo $result['img1']?>"/>
+            <img src="<?php if(!empty($result['img2']))echo $result['img2']?>"/>
+            <img src="<?php if(!empty($result['img3']))echo $result['img3']?>"/>
+        </div>
+        <div id="previewContent"></div>
     </fieldset>
      <fieldset>
          <legend>商品介绍</legend>
-         <textarea name="productionText" style="width:600px;height:400px;"></textarea>
+         <textarea name="productionText" style="width:600px;height:400px;"><?php echo $result['text']?></textarea>
      </fieldset>
 
+    <input type="button" value="返回上一页" name="back" onclick="history.go(-1);"/>
     <input type="button" value="下一步" name="submit" />
     </form>
 
@@ -196,10 +204,27 @@ include('conn.php');
 <div id="text"></div>
 <script id="win"></script>
 <script>
+
+
+    window.onload=function(){
+        var img=document.getElementsByTagName("img");
+        for(var i=0;i<img.length;i++){
+            if(img[i].getAttribute('src')===""){
+                img[i].style.cssText="display:none";
+            }
+
+        }
+    };
+
+
+
 //图片预览
+    var flag=0;
     function preview(target){
+        flag=1;
+        document.getElementById('imgContent').style.cssText="display:none";
         var length=0;
-        var imgContent=document.getElementById('imgContent');
+        var imgContent=document.getElementById('previewContent');
         var reader=new FileReader();
         reader.readAsDataURL(target.files[length]);
         reader.onload=function(){
@@ -214,7 +239,7 @@ include('conn.php');
 
 
 //分类
-    var categories="";
+    var categories=document.getElementById("cateText").innerText;
 
     function setNone(className){
         var arr=document.getElementsByClassName(className);
@@ -237,25 +262,34 @@ include('conn.php');
     }
 //ajax
     document.getElementsByName("submit")[0].onclick=function(){
-        var form=document.getElementsByTagName("form")[0];
-        var formData=new FormData(form);
-        var brand=$("input[name='brand']:checked").val();
-        formData.append("brand",brand);
-        formData.append("categories",categories);
+        var go=confirm("是否编辑？编辑之后不可撤回！");
+        if(go){
+            var form=document.getElementsByTagName("form")[0];
+            var formData=new FormData(form);
+            var brand=$("input[name='brand']:checked").val();
+            var id=document.getElementById('send').innerText;
+            formData.append("brand",brand);
+            formData.append("categories",categories);
+            formData.append("id",id);
 
-        var files=document.getElementsByName("files")[0].files;
-        if(files.length>4){
-            alert("只能上传四张图片！多余的图片无效！！")
-        }
-        for (var i=0;i<files.length;i++){
-            formData.append('img'+i,files[i]);
-        }
-        var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(this.readyState===4){
-                var result=JSON.parse(this.responseText);
-               var error=result['error'];
-                if(error.length!==0){
+            var files=document.getElementsByName("files")[0].files;
+            if(files.length>4){
+                alert("只能上传四张图片！多余的图片无效！！")
+            }
+
+
+
+            formData.append('flag',flag);
+            for (var i=0;i<files.length;i++){
+                formData.append('img'+i,files[i]);
+            }
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(this.readyState===4){
+                    var result=JSON.parse(this.responseText);
+                    console.log(result);
+                    var error=result['error'];
+                    if(error.length!==0){
 
                         if(error['file']){
                             document.getElementById('myFile').innerText=error['file'];
@@ -272,18 +306,22 @@ include('conn.php');
                         if(error['files']){
                             document.getElementById('myFile').innerText=error['files'];
                         }
-                        if(error['size']){
-                            document.getElementById('size').innerText=error['size'];
+
+                    }else{
+                        if(result['success']){
+                            window.location="editProductionAtrr.php?id="+id;
+                        }else{
+                            alert(result['fail']);
                         }
 
-                }else{
-                        window.location="addProductionAtrr.php?id="+result['id'];
+                    }
                 }
-            }
-        };
+            };
 
-        xhr.open("post","addProductionCheck.php",true);
-        xhr.send(formData);
+            xhr.open("post","editProductionCheck.php",true);
+            xhr.send(formData);
+
+        }
 
     }
 

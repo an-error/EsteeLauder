@@ -48,7 +48,7 @@
 		margin-top:30px;
 	}
 	img{
-		
+
 		margin:20px auto;
 		
 	
@@ -65,7 +65,7 @@
 <body>
 
 	<div class="row" id="block">
-		<img src="../image/5ebb8acc24636e625352174223b87331.jpeg"/>
+		<img src="../image/esteeLauder.jpeg"/>
 		<form action="managerLoginCheck.php" method="post">
 
 			<p>账号：</p>

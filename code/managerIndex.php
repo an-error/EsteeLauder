@@ -159,7 +159,7 @@
 			</div>
 			<div id="collapsetwo" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="#" target="content">订单列表</a><br/>
+					<a href="managerOrder.php" target="content">订单列表</a><br/>
 					<a href="#" target="content">订单添加</a>
 				</div>
 			</div>
@@ -192,7 +192,7 @@
 		</div>
 	</div>
 	
-	<iframe id="content" name="content" frameborder="0" scrolling="auto"  height="600px"></iframe>
+	<iframe id="content" name="content" frameborder="0" scrolling="auto"  height="700px"></iframe>
 	<script>
 		$( function () {
 			$( '#myTab a:last' ).tab( 'show' );

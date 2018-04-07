@@ -15,6 +15,8 @@ $file=$_FILES['pic'];
 $imgsDirectory=array();
 
 
+
+
 function upload($name,$tmpName){
     $fileName=$name;
     $fileTmp=$tmpName;
@@ -64,6 +66,11 @@ if($_POST['productionText']!=""){
     $text=$_POST['productionText'];
 }
 
+if($_POST['size']!=""){
+    $size=$_POST['size'];
+}else{
+    $arrErr['size']="请填写规格大小！";
+}
 
 $brand=$_POST['brand'];
 $collection['error']=$arrErr;
@@ -71,9 +78,9 @@ $collection['error']=$arrErr;
 if(empty($arrErr)){
     include("conn.php");
     $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-    $statement=$db->prepare("insert into production(name,categories,brand,img,img0,img1,img2,img3,abstract)
-                        value(:pName,:categories,:brand,:img,:img0,:img1,:img2,:img3,:text)");
-    $statement->execute(array(':pName'=>$pName,':categories'=>$categories,':brand'=>$brand,':img'=>$img, 'img0'=>$img0,'img1'=>$img1,'img2'=>$img2,'img3'=>$img3,':text'=>$text))
+    $statement=$db->prepare("insert into production(name,categories,brand,size,img,img0,img1,img2,img3,text)
+                        value(:pName,:categories,:brand,:size,:img,:img0,:img1,:img2,:img3,:text)");
+    $statement->execute(array(':pName'=>$pName,':categories'=>$categories,':brand'=>$brand,':size'=>$size,':img'=>$img, 'img0'=>$img0,'img1'=>$img1,'img2'=>$img2,'img3'=>$img3,':text'=>$text))
                 or die ( '程序运行出错,出错信息:' . print_r( $db->errorInfo(),TRUE ) );
 
     $collection['id']=$db->lastInsertId();

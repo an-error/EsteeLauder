@@ -9,10 +9,15 @@ include("module.php");
 
 include("conn.php");
 $id=$_REQUEST['id'];
-$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+//商品属性集合
+$sql="select * from productionAttr where pid='".$id."'";
+$statement=$db->query($sql);
+$result=$statement->fetchAll(PDO::FETCH_ASSOC);
+//商品名称
 $sql="select name from production where id='".$id."'";
-$result=$db->query($sql);
-$result=$result->fetch();
+$statement=$db->query($sql);
+$name=$statement->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <!doctype html>
@@ -68,25 +73,32 @@ $result=$result->fetch();
             margin-left:30px;
         }
 
-        .buttonContent input[name="submit"]{
+        .buttonContent input[name="cancel"]{
             display:inline-block;
-            margin-left:450px;
+            margin-left:500px;
         }
+
+        .buttonContent input[name="edit"]{
+            display:inline-block;
+            margin-left:20px;
+        }
+
 
     </style>
 </head>
 
 <body>
     <fieldset id="content">
-        <legend><?php echo $result['name']?></legend><!--
+        <legend><?php echo $name['name']?></legend><!--
         <p>色号：<input name="color1" type="text" class="jscolor color" onchange="setSKU(<?php /*echo $result['name']*/?>)"/></p>
         <p>sku:<input type="text" readonly="readonly" name="sku"/></p>-->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" name="form1">
-            <table border="1" width="930px" class="tab">
+            <table border="1" width="1030px" class="tab">
                 <caption>商品属性</caption>
                 <thead>
                 <tr>
                     <th width="100px"></th>
+                    <th width="200px">sku</th>
                     <th width="200px">色号</th>
                     <th width="200px">名称</th>
                     <th width="200px">库存</th>
@@ -95,20 +107,24 @@ $result=$result->fetch();
                 </thead>
 
                 <tbody>
+                <?php foreach($result as $row):?>
                 <tr>
                     <td><input type="radio" /></td>
-                    <td><input type="text" class="jscolor color" /></td>
-                    <td><input type="text" /></td>
-                    <td><input type="number" min="0" /></td>
-                    <td><input type="number" min="0"/></td>
+                    <td><input type="text" disabled value="<?php echo $row['sku']?>" name="sku"/></td>
+                    <td><input type="text" class="jscolor color" value="<?php echo $row['colour_num']?>" name="jscolor"/></td>
+                    <td><input type="text" value="<?php echo $row['colour_name']?>" name="colour_name"</td>
+                    <td><input type="number" min="0" value="<?php echo $row['stock']?>" name="stock"/></td>
+                    <td><input type="number" min="0" value="<?php echo $row['price']?>" name="price"/></td>
                 </tr>
+                <?php endforeach;?>
                 </tbody>
 
             </table>
             <div class="buttonContent">
             <input type="button" value="增添一行" id="appendRow"/>
             <input type="button" value="删除" id="delRow" onclick="del()"/>
-            <input type="button" value="提交"  name="submit" />
+            <input type="button" value="取消"  name="cancel" onclick="location.href='productionList.php'"/>
+            <input type="button" value="编辑"  name="edit" />
             </div>
         </form>
 
@@ -123,13 +139,26 @@ $result=$result->fetch();
 
 
     $('.jscolor').colorpicker();        //启动颜色选择器
+
+    //添加sku
+    function setSKU(){
+            var sku=$("tr:last td input[name='sku']").val();
+            var jscolor=$("tr:last td input[name='jscolor']").val();
+            if(sku==="" && jscolor!==""){
+                var pname=$('legend').text();
+                $("tr:last td input[name='sku']").val(pname+"_"+jscolor);
+            }
+    }
+
     //增添一行
     $('#appendRow').on('click',function(){
+        setSKU();
         var html='<tr><td width="100px"><input type="radio" /></td>' +
-            '<td width="200px"><input  type="text" class="jscolor" /></td>' +
-            '<td><input type="text" /></td>'+
-            '<td width="200px"><input type="number" min="0"/></td>' +
-            '<td width="200px"><input type="number" min="0"/></td></tr>';
+            '<td><input type="text" disabled name="sku"/></td>'+
+            '<td width="200px"><input  type="text" class="jscolor " name="jscolor" /></td>' +
+            '<td><input type="text"  name="colour_name"</td>'+
+            '<td width="200px"><input type="number" min="0" name="stock"/></td>' +
+            '<td width="200px"><input type="number" min="0" name="price"/></td></tr>';
         $("table:first tbody").append(html);
         $('.jscolor').colorpicker();
     });
@@ -156,35 +185,40 @@ $result=$result->fetch();
                data[j-1]=table.rows[i].cells[j].getElementsByTagName("input")[0].value;
            }
            if(data[1]!==""){
+               if(data[0]===""){
+                   data[0]=document.getElementsByTagName('legend')[0].innerText+"_"+data[1];
+               }
                dataArr[i-1]=data;
            }
        }
        return dataArr;
    }
 
-   document.getElementsByName("submit")[0].onclick=function(){
-        var data=getData();
-        var form=document.getElementsByTagName("form")[0];
-        var formData=new FormData(form);
-        formData.append("data",data);
-       var name=document.getElementsByTagName("legend")[0].innerText;
-       formData.append("name",name);
-       var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(this.readyState===4){
-                console.log(this.responseText);
-                var result=JSON.parse(this.responseText);
-                console.log(result);
-                if(result['error']!==""){
-                    alert(result['error']);
-                }else{
-                    alert(result['success']);
-                    location.href="productionList.php";
-                }
-            }
-        };
-        xhr.open("post","addProductionAtrrCheck.php",true);
-        xhr.send(formData);
+   document.getElementsByName("edit")[0].onclick=function(){
+       var go=confirm("是否编辑？编辑之后不可撤回！");
+       if(go){
+           var data=getData();
+           var form=document.getElementsByTagName("form")[0];
+           var formData=new FormData(form);
+           formData.append("data",data);
+           var name=document.getElementsByTagName("legend")[0].innerText;
+           formData.append("name",name);
+           var xhr=new XMLHttpRequest();
+           xhr.onreadystatechange=function(){
+               if(this.readyState===4){
+                   var result=JSON.parse(this.responseText);
+                   console.log(result);
+                   if(result['error']!==""){
+                       alert(result['error']);
+                   }else{
+                       location.href="productionList.php";
+                   }
+               }
+           };
+           xhr.open("post","editProductionAtrrCheck.php",true);
+           xhr.send(formData);
+       }
+
 
 
 
