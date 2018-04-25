@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8e03d23-219c-4973-be47-80bcefa26fa9" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/index.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -249,7 +248,7 @@
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="127.0.0.1" port="88" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="30" />
     <option name="y" value="72" />
     <option name="width" value="1932" />
@@ -447,12 +446,12 @@
       <workItem from="1524375899846" duration="22171000" />
       <workItem from="1524444062800" duration="37226000" />
       <workItem from="1524529479478" duration="880000" />
-      <workItem from="1524615702390" duration="1975000" />
+      <workItem from="1524615702390" duration="2488000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="909683000" />
+    <option name="totallyTimeSpent" value="910196000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -464,7 +463,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="30" y="72" width="1932" height="982" extended-state="0" />
+    <frame x="30" y="72" width="1932" height="982" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24918744" sideWeight="0.4916388" order="0" side_tool="false" content_ui="combo" />
