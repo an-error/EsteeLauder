@@ -15,6 +15,7 @@ $file=$_FILES['pic'];
 $imgsDirectory=array();
 
 
+//print_r($_FILES['pic']);
 
 
 function upload($name,$tmpName){

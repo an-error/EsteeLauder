@@ -155,8 +155,10 @@ session_start();
     </div>
     <input type="button" name="continue" value="继续结账" onclick="toContinue(<?php echo $_SESSION['is_login']?>)"/>
 </div>
-
+<?php include("footer.php")?>
 <script>
+
+    $("footer").css("position","absolute");
    /* $("input[name='continue']").click(function(){
 
         location.href="address.php";
@@ -185,8 +187,9 @@ session_start();
             xhr.onreadystatechange=function(){
                 if(this.readyState===4){
                     parent.style.display="none";
-                    document.getElementById('total').innerText=this.responseText;
-                    if(this.responseText==0){
+                    var result=JSON.parse(this.responseText);
+                    document.getElementById('total').innerText=result['total'];
+                    if(result['total']===0){
                         document.getElementById('account').style.display="none";
                     }
 
@@ -210,7 +213,9 @@ session_start();
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
-                document.getElementById('total').innerText=this.responseText;
+                var result=JSON.parse(this.responseText);
+                document.getElementById('total').innerText=result['total'];
+                node.value=result['count'];
             }
         };
         xhr.open("post","countChange.php",true);

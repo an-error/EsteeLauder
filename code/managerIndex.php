@@ -1,3 +1,4 @@
+<?php include("module.php")?>
 <!doctype html>
 <html>
 
@@ -16,8 +17,9 @@
 		}
 		
 		body {
-			background-color: rgba(230, 230, 230, 0.5);
-			/* rgba(67,85,135,0.5) rgba(230,230,230,0.5)*/
+			background-color:rgba(230,230,230,0.5);
+			/* rgba(67,85,135,0.5) rgba(230,230,230,0.5) #2c343c*/
+            font-family: FangSong   ;
 		}
 		
 		#logo {
@@ -69,24 +71,24 @@
 			position: absolute;
 			top: 60px;
 			left: 280px;
+            font-family: FZShuTi ;
 		}
 		
 		.nav {
 			width: 220px;
-			height: 600px;
+			height: 700px;
 			position: absolute;
 			left: 0;
 			top: 120px;
 			background-color: rgba(252, 252, 252, 1.00);
-			border-radius: 8PX;
 			padding:20px;
 		}
 		
 		iframe{
 			position:absolute;
 			right:50px;
-			top:120px;
-			width:80%;
+			top:100px;
+			width:83%;
 			background-color:rgba(252, 252, 252, 1.00);
 			border-radius: 8px;
 		}
@@ -101,6 +103,13 @@
 			display:block;
 			padding-left:60px;
 		}
+
+        .icon-logout{
+            font-size:30px;
+            position:absolute;
+            right:5px;
+            top:20px;
+        }
 	</style>
 </head>
 
@@ -118,6 +127,8 @@
 			<i class="fa fa-search search" aria-hidden="true"></i>
 			<input name="search" type="text"/>
 		</div>
+
+        <i class="iconfont icon-logout"></i>
 	</div>
 	
 	
@@ -129,14 +140,13 @@
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse"
-                   data-parent="#accordion2" href="#">报表</a>
+                   data-parent="#accordion2" href="#collapseZero">报表</a>
             </div>
-           <!-- <div id="collapseZero" class="accordion-body collapse ">
+            <div id="collapseZero" class="accordion-body collapse ">
                 <div class="accordion-inner">
-                    <a href="productionList.php" target="content">商品列表</a><br/>
-                    <a href="productionOperation.php" target="content">商品添加</a>
+                    <a href="report.php" target="frame-content">报表</a><br/>
                 </div>
-            </div>-->
+            </div>
         </div>
 
 		<div class="accordion-group">
@@ -146,8 +156,8 @@
 			</div>
 			<div id="collapseOne" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="productionList.php" target="content">商品列表</a><br/>
-					<a href="addProduction.php" target="content">商品添加</a>
+					<a href="productionList.php" target="frame-content">商品列表</a><br/>
+					<a href="addProduction.php" target="frame-content">商品添加</a>
 				</div>
 			</div>
 		</div>
@@ -159,8 +169,11 @@
 			</div>
 			<div id="collapsetwo" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="managerOrder.php" target="content">订单列表</a><br/>
-					<a href="#" target="content">订单添加</a>
+					<a href="managerOrder.php" target="frame-content">订单列表</a><br/>
+					<a href="managerOrderSearch.php?status=0" target="frame-content">待付款</a><br/>
+                    <a href="managerOrderSearch.php?status=1" target="frame-content">待发货</a><br/>
+                    <a href="managerOrderSearch.php?status=2" target="frame-content">已签收</a><br/>
+                    <a href="managerOrderSearch.php?status=3" target="frame-content">已评论</a>
 				</div>
 			</div>
 		</div>
@@ -172,8 +185,7 @@
 			</div>
 			<div id="collapseThree" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="userList.php" target="content">用户列表</a><br/>
-					<a href="#" target="content">用户添加</a>
+					<a href="userList.php" target="frame-content">用户列表</a><br/>
 				</div>
 			</div>
 		</div>
@@ -185,14 +197,40 @@
 			</div>
 			<div id="collapsefFour" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="managerList.php" target="content">管理员列表</a><br/>
-					<a href="addManager.php" target="content">管理员添加</a>
+					<a href="managerList.php" target="frame-content">管理员列表</a><br/>
+					<a href="addManager.php" target="frame-content">管理员添加</a>
 				</div>
 			</div>
 		</div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse"
+                   data-parent="#accordion2" href="#collapsefFive">评论管理</a>
+            </div>
+            <div id="collapsefFive" class="accordion-body collapse ">
+                <div class="accordion-inner">
+                    <a href="managerComment.php" target="frame-content">管理评论</a><br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse"
+                   data-parent="#accordion2" href="#collapsefSix">退货管理</a>
+            </div>
+            <div id="collapsefSix" class="accordion-body collapse ">
+                <div class="accordion-inner">
+                    <a href="managerReturnGoods.php" target="frame-content">管理退货</a><br/>
+                </div>
+            </div>
+        </div>
+
+
 	</div>
 	
-	<iframe id="content" name="content" frameborder="0" scrolling="auto"  height="700px"></iframe>
+	<iframe id="frame-content" name="frame-content" frameborder="0" scrolling="auto"  height="700px"></iframe>
 	<script>
 		$( function () {
 			$( '#myTab a:last' ).tab( 'show' );
@@ -205,6 +243,24 @@
 		$('#collapseOne').on('hide',function(){
 			$(this).css("display","none");
 		});
+
+        $(".icon-logout").click(function(){
+            var isExit=confirm("是否退出？");
+            if(isExit){
+                location.href="managerLogin.php";
+            }
+
+        })
+
+        document.getElementsByName("search")[0].onkeydown=function(){
+            if(event.keyCode=='13'){
+                if(this.value) {
+
+                    var frame=document.getElementById("frame-content");
+                    frame.src="search.php?search="+this.value;
+                }
+            }
+        }
 	</script>
 	
 </body>

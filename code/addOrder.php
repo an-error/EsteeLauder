@@ -62,6 +62,7 @@ if(empty($_SESSION['buy'])){
 
 $_SESSION['html']="";
 
-
+$_SESSION['total']=0;
+$_SESSION['buyTotal']=0;
 
 

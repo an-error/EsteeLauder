@@ -24,9 +24,6 @@ if($_SESSION['cart'] && sizeof($_SESSION['cart'])>0){
             if(!in_array($key,$idInCart)){
                 $idInCart[]=$key;
             }
-
-
-
     }
 }
 
@@ -55,7 +52,7 @@ if($pname){
     if(!$_POST['stock']){
         $id=$pname.'_'."#ffffff";
         if(in_array($id,$idInCart)){
-            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']){
+            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']+1){
                 $_SESSION['cart'][$id]['count']++;
                 //makeHTML($id,$_SESSION['cart'][$id]['count']);
             }
@@ -69,22 +66,19 @@ if($pname){
             $production['count']=1;
             $production['pid']=$pid;
             $_SESSION['cart'][$id]=$production;
-            //makeHTML($id,1);
         }
 
 
     }else{
         $id=$pname.'_'.$_POST['colour_num'];
         if(in_array($id,$idInCart)){
-            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']){
+            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']+1){
                 $_SESSION['cart'][$id]['count']++;
-                //makeHTML($id,$_SESSION['cart'][$id]['count']);
             }
 
         }else{
             $production['pid']=$pid;
             $_SESSION['cart'][$id]=$production;
-            //makeHTML($id,1);
         }
     }
 
@@ -99,14 +93,10 @@ foreach($_SESSION['cart'] as $key=>$value){
 }
 
 $_SESSION['total']=$total;
-
 $htmlAll.="<p>总计：<span id='cart-total'>"."￥".$total."</span></p>";
-/*$message='<?php echo $_SESSION["is_login"]; ?>';*/
-//$htmlAll.="<input type='button' name='toCount' value='去结算' onclick='toCount(".$_SESSION['is_login'].")'/>";
 $htmlAll.="<input type='button' name='toCount' value='去结算' onclick='toCount()'/>";
 $_SESSION['html']=$htmlAll;
 $collection['html']=$htmlAll;
-$collection['session']=$_SESSION;
 
 
 echo json_encode($collection);

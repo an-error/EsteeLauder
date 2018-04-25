@@ -48,7 +48,10 @@ if($result['img3']){
 preg_match('#[a-zA-Z\s+\d/.]*#',$result['name'],$matches);
 $name=substr($result['name'],strlen($matches[0]));
 
-
+$sql="select * from comment where pid='".$_REQUEST['id']."' and isShow=1";
+$statement=$db->query($sql);
+$comment=$statement->fetchAll(PDO::FETCH_ASSOC);
+$commentCount=sizeof($comment);
 ?>
 
 <!doctype html>
@@ -92,7 +95,7 @@ $name=substr($result['name'],strlen($matches[0]));
 
 
 
-        #background{
+        /*#background{
             width:100%;
             height:100%;
             background-color:rgba(139,138,138,0.50);
@@ -136,7 +139,7 @@ $name=substr($result['name'],strlen($matches[0]));
 
         #close-button:hover{
             color:red;
-        }
+        }*/
         #price{
 
             margin-left:20px;
@@ -217,16 +220,167 @@ $name=substr($result['name'],strlen($matches[0]));
             width:170px;
         }
 
-        .lack{
+        #lack{
             display:none;
             color: #EE2C2C;
             margin:20px auto;
         }
+
+        #detail{
+            width:70%;
+            margin:150px auto;
+            padding:40px;
+        }
+
+        #detail textarea{
+            width:60%;
+            height:500px;
+            font-size: 16px;
+            border:none;
+        }
+
+        a[href="#detail"]{
+            display:inline-block;
+            margin-right:20px;
+        }
+
+        #comment{
+            width:70%;
+            margin:150px auto;
+            padding:40px;
+        }
+
+        #comment{
+            width:70%;
+            margin:150px auto;
+            padding:30px;
+        }
+
+        .comment-content{
+            padding-bottom::30px;
+            border-bottom: 1px solid #dfe0e1;
+        }
+
+        .comment-content-text{
+            width:500px;
+            height:120px;
+        //background-color: #265a88;
+            float:left;
+            margin-right:150px;
+            padding:30px;
+        }
+
+        .comment-content-stars ul{
+            display:block;
+            list-style-type: none;
+            height:30px;
+            width:400px;
+            line-height:30px;
+        }
+
+        .comment-content-stars li{
+            float:left;
+        }
+
+
+
+        .comment-content-stars li:nth-child(1){
+            display: inline-block;
+            margin-right:30px;
+        }
+
+        .comment-content-stars .icon-xingxing{
+            font-size:20px;
+            color:grey;
+        }
+
+        .comment-content-stars .icon-icon-test{
+            font-size:20px;
+            color:gold;
+        }
+        .comment-content-stars{
+            display:inline-block;
+            padding:20px;
+            width:400px;
+            height:200px;
+
+        }
+        .comment-content p{
+            width:200px;
+        }
+
+        .comment-content-img{
+            width:700px;
+            height:150px;
+            padding:20px;
+            position:relative;
+        }
+
+        .comment-content-img img{
+            width:80px;
+            height:100px;
+            margin-right:20px;
+            float:left;
+        }
+
+        .comment-content-big-img{
+            position:absolute;
+            top:130px;
+            z-index:3;
+            display:none;
+        }
+
+        .comment-content-big-img img{
+            width:300px;
+            height:400px;
+
+        }
+
+        .my-icon{
+            width:40px;
+            height:40px;
+            background-color:#F5F5F5;
+            margin:50px 20px;
+            position: fixed;
+            text-align: center;
+            line-height: 40px;
+            top:480px;
+        }
+
+        .my-icon div{
+            width:0;
+            height:0;
+            border-style:solid;
+            border-width: 20px;
+            border-color:transparent #F5F5F5 transparent transparent;
+            position:absolute;
+            left:-40px;
+
+        }
+
+        .detail-icon{
+            top:530px;
+        }
+
+        .comment-icon{
+            top:580px;
+        }
+
+        .my-icon a[href='#detail']{
+            display:inline-block;
+            width:40px;
+        }
+
+
     </style>
 </head>
 
 <body>
-<div id="fence"><?php echo $major['major']?> &gt <?php echo $result['categories']?></div>
+<div class="my-icon" onclick="history.back();"><div></div><a>返回</a></div>
+<div class="my-icon detail-icon"><div></div><a href="#detail">详情</a></div>
+<div class="my-icon comment-icon"><div></div><a href="#comment">评论</a></div>
+
+<div id="fence"><?php /*echo $major['major']*/?><!-- &gt --><?php /*echo $result['categories']*/?></div>
 <div class="container">
     <div class="row">
         <div class="col-md-5">
@@ -243,8 +397,9 @@ $name=substr($result['name'],strlen($matches[0]));
             </div>
 
             <?php endif;?>
-            <div style="margin-top:<?php if($color[0]['colour_num']==='#ffffff'){ echo '120px';}?>"><a id="detail">商品详情</a></div>
+            <div style="margin-top:<?php if($color[0]['colour_num']==='#ffffff'){ echo '120px';}?>"><a href="#detail">商品详情</a><a href="#comment">评价</a></div>
             <div class="content"><p><?php echo $result['size']?></p><p id="price"><?php if($color[0]['colour_num']==='#ffffff'){ echo '￥'.$color[0]['price'];}?></p></div>
+
 
             <?php  if($color[0]['colour_num']!=='#ffffff'):?>
             <!--色号选择-->
@@ -273,12 +428,9 @@ $name=substr($result['name'],strlen($matches[0]));
 
             </div>
 
-            <p class="lack">暂时缺货</p>
 
 
-            <?php /*if($result['stock']<0):*/?><!--
-            <p class="center" style="color:red">暂时缺货</p>
-            --><?php /*endif;*/?>
+            <p id="lack" >暂时缺货</p>
 
         </div>
     </div>
@@ -290,27 +442,94 @@ $name=substr($result['name'],strlen($matches[0]));
 
 </div>
 <!--商品详情-->
-<div id="background">
+<!--<div id="background">
     <div id="pop">
         <div id="close">
             <button id="close-button">X</button>
         </div>
         <div class="pop-content">
-            <?php echo $result['text']?>
+            <?php /*echo $result['text']*/?>
         </div>
     </div>
-</div>
+</div>-->
 
+<fieldset id="detail">
+    <legend>商品详情</legend>
+    <textarea><?php echo $result['text']?></textarea>
+</fieldset>
 
+<!--评价-->
+<fieldset id="comment">
+    <legend>评价（共<?php echo $commentCount?>条）</legend>
+    <?php foreach($comment as $r):?>
+        <div class="comment-content">
+            <div class="comment-content-text"><?php echo $r['content']?></div>
+            <div class="comment-content-stars">
+                <ul class="one">
+                    <li>宝贝与描述相符</li>
+                    <?php for($i=0; $i<5;$i++):?>
+                        <?php if($i<$r['goodsScore']):?>
+                            <li><i class="iconfont icon-icon-test" ></i></li>
+                        <?php else:?>
+                            <li><i class="iconfont icon-xingxing" ></i></li>
+                        <?php endif;?>
+                    <?php endfor;?>
+                </ul>
+                <ul class="two" >
+                    <li>我们的服务态度</li>
+                    <?php for($i=0; $i<5;$i++):?>
+                        <?php if($i<$r['serviceScore']):?>
+                            <li><i class="iconfont icon-icon-test" ></i></li>
+                        <?php else:?>
+                            <li><i class="iconfont icon-xingxing" ></i></li>
+                        <?php endif;?>
+                    <?php endfor;?>
+                </ul>
+                <ul class="three">
+                    <li>物流的服务质量</li>
+                    <?php for($i=0; $i<5;$i++):?>
+                        <?php if($i<$r['timeScore']):?>
+                            <li><i class="iconfont icon-icon-test" ></i></li>
+                        <?php else:?>
+                            <li><i class="iconfont icon-xingxing" ></i></li>
+                        <?php endif;?>
+                    <?php endfor;?>
+                </ul>
+            </div>
+
+            <?php if($r['img0']!=''):?>
+                <div class="comment-content-img">
+                    <img src="<?php echo $r['img0']?>" />
+                    <img src="<?php echo $r['img1']?>" />
+                    <img src="<?php echo $r['img2']?>" />
+                    <img src="<?php echo $r['img3']?>" />
+                    <img src="<?php echo $r['img4']?>" />
+                    <div class="comment-content-big-img"></div>
+                </div>
+            <?php endif;?>
+            <p><span><?php echo $r['create_at']?></span></p>
+        </div>
+    <?php endforeach;?>
+
+</fieldset>
+<?php include("footer.php")?>
 <script src="setRGB.js"></script>
 <script>
-    $("#detail").click(function(){
+
+
+   /* $("#detail").click(function(){
         $("#background").css("display","block");
     });
 
     $("#close-button").click(function(){
         $("#background").css("display","none");
     });
+*/
+
+   //textarea高度根据内容变换
+   var textarea=document.getElementsByTagName("textarea")[0];
+   textarea.style.height=textarea.scrollHeight+'px';
+
 
     //点击背景时display：
     var background=document.getElementById("background");
@@ -347,7 +566,7 @@ $name=substr($result['name'],strlen($matches[0]));
 
     $("#name").click(function(){
         $("#color-select").css("display","block");
-    })
+    });
 
 
 
@@ -357,7 +576,9 @@ $name=substr($result['name'],strlen($matches[0]));
         $("#color-select").css('display','none');
     });
 
-    $("input[type='number']").blur(function(){
+
+
+    $("input[type='number']").change(function(){
         var stock=$('#buy').attr('stock');
 
         if(this.value>6 && stock>6){
@@ -428,8 +649,6 @@ $name=substr($result['name'],strlen($matches[0]));
             if(this.readyState===4){
                 var result=JSON.parse(this.responseText);
                 var shopping=document.getElementById('shopping');
-                shoppingHTML=result['html'];
-                console.log(shoppingHTML);
                 shopping.innerHTML=result['html'];
                 shopping.style.display="block";
             }
@@ -443,7 +662,7 @@ $name=substr($result['name'],strlen($matches[0]));
         if(shoppingHTML!==""){
             document.getElementById('shopping').innerHTML=shoppingHTML;
         }
-    }
+    };
 
 
     document.getElementsByName('buy')[0].onclick=function(){
@@ -464,12 +683,32 @@ $name=substr($result['name'],strlen($matches[0]));
         };
         xhr.open("post","toBuy.php",true);
         xhr.send(Data);
-    }
+    };
 
 
-    /*$(function(){
+    $(function(){
+        $("img").each(function(){
+            if($(this).attr('src')===""){
+                $(this).css("display","none");
+            }
+        })
+    })
 
-    })*/
+    $(".comment-content-img").on("click","img",function(){
+        $(".comment-content-big-img").each(function(){
+            $(this).css("display","none");
+        });
+        var path=$(this).attr("src");
+        var temp="<img src='"+path+"'/>";
+        $(this.parentNode).find('.comment-content-big-img').html(temp);
+        $(this.parentNode).find('.comment-content-big-img').css("display","block");
+    });
+
+    $(".comment-content-big-img").mouseleave(function(){
+        $(this).css("display","none");
+    })
+
+
 
 
 

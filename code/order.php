@@ -78,6 +78,10 @@ print_r($name);*/
     <meta charset="utf-8">
     <title>无标题文档</title>
     <style>
+        body{
+            width:100%;
+            height:100%;
+        }
         .content{
             width:1000px;
             height:auto;
@@ -160,6 +164,12 @@ print_r($name);*/
         </table>
         <p class="right"><span>订单总金额：</span><?php echo $total;?>元</p>
     </div>
-    <a class="backToShopping" href="header.php">继续购物</a>
+    <a class="backToShopping" href="index.php">继续购物</a>
+
+<?php include('footer.php')?>
 </body>
+<script>
+
+    $("footer").css("position","relative")
+</script>
 </html>

@@ -14,22 +14,23 @@
 <meta charset="utf-8">
 <title>无标题文档</title>
 <style>
-	
-	.tab{
-		display:block;
-		margin:auto;
-		margin-top:50px;
-		height:auto;
-		border:none;
-		
-	}
-	
-	.tab td,.tab th{
-		border-collapse: collapse;
-		border-color:rgba(170,161,161,1.00);
-		text-align:center;
-		height:30px;
-	}
+
+    table{
+        margin:50px auto;
+        collapse: none;
+        text-align: center;
+        border:none;
+    }
+    table thead th{
+        height:50px;
+        border:1px solid #dfe0e1;
+        text-align:center;
+    }
+
+    table tbody td{
+        height:40px;
+        border:1px solid #dfe0e1;
+    }
 		
 </style>
 </head>

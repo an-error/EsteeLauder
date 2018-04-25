@@ -22,9 +22,9 @@
 
         .tab td,.tab th{
             border-collapse: collapse;
-            border-color:rgba(170,161,161,1.00);
+            border:1px solid #dfe0e1;
             text-align:center;
-            height:30px;
+            height:40px;
             word-break:keep-all;
             white-space:nowrap;
             overflow:hidden;

@@ -18,6 +18,7 @@ include('conn.php');
     <title>添加商品</title>
     <style>
 
+
         .radio img{
             width:100px;
             height:100px;
@@ -74,17 +75,40 @@ include('conn.php');
             display:block;
             margin:0 0 0 200px;
         }
-        #imgContent img{
+        #imgContent img,#imgContent2 img{
             width:100px;
             height:100px;
             display:inline-block;
             margin:10px;
         }
 
+        .img-preview{
+            width:100px;
+            height:100px;
+            display:inline-block;
+            margin:10px;
+            position:relative;
+        }
+        .img-preview span{
+            position:absolute;
+            top:8px;
+            left:10px;
+            color:grey;
+        }
+        .img-preview img{
+            width:100px;
+            height:100px;
+        }
+
+        .img-preview span:hover{
+            color:red;
+        }
+
         #content{
-            margin:30px;
+            margin:30px auto;
             padding:20px;
             width:800px;
+            position:relative;
         }
 
         input[name="submit"]{
@@ -123,7 +147,7 @@ include('conn.php');
             <label for="radio1"><img src="../image/esteeLauder.jpeg" /> </label>
         </div>
 
-        <div class="radio">
+        <!--<div class="radio">
             <input type="radio" id="radio2" name="brand" value="Tom Ford"/>
             <label for="radio2"><img src="../image/TF.jpg" /> </label>
         </div>
@@ -131,7 +155,7 @@ include('conn.php');
         <div class="radio">
             <input type="radio" id="radio3" name="brand" value="Bobbi Brown"/>
             <label for="radio3"><img src="../image/bobbiBrown.jpg" /> </label>
-        </div>
+        </div>-->
 
     </fieldset>
    <fieldset>
@@ -180,8 +204,9 @@ include('conn.php');
     <fieldset >
         <legend >图片上传<span class="error" id="myFile"></span></legend>
         <p>主图：<input type="file" name="pic" accept="image/jpeg,image/gif,image/png" onchange="preview(this)"/></p>
-        <p>附图：<input type="file" name="files" accept="image/jpeg,image/gif,image/png" onchange="preview(this)" multiple/></p>
         <div id="imgContent"></div>
+        <p>附图：<input type="file" name="files" accept="image/jpeg,image/gif,image/png" onchange="preview(this)" multiple/></p>
+        <div id="imgContent2"></div>
     </fieldset>
      <fieldset>
          <legend>商品介绍</legend>
@@ -199,18 +224,42 @@ include('conn.php');
 //图片预览
     function preview(target){
         var length=0;
-        var imgContent=document.getElementById('imgContent');
-        var reader=new FileReader();
-        reader.readAsDataURL(target.files[length]);
-        reader.onload=function(){
-                imgContent.innerHTML+="<img src='"+this.result+"'/>";
+        if(target.name==="pic"){
+            var imgContent=document.getElementById('imgContent');
+            imgContent.innerHTML="";
+            var reader=new FileReader();
+            reader.readAsDataURL(target.files[length]);
+            reader.onload=function(){
+                imgContent.innerHTML="<img src='"+this.result+"'/>";
                 length++;
                 if(length<target.files.length){
                     reader.readAsDataURL(target.files[length]);
                 }
 
+            }
+        }else{
+            var imgContent=document.getElementById('imgContent2');
+            imgContent.innerHTML="";
+            var reader=new FileReader();
+            reader.readAsDataURL(target.files[length]);
+            reader.onload=function(){
+                imgContent.innerHTML+="<div class='img-preview'><img src='"+this.result+"'/><span>x</span></div>";
+                length++;
+                if(length<target.files.length){
+                    reader.readAsDataURL(target.files[length]);
+                }
+
+            }
         }
+
     }
+
+    var delFilesIndex=[];
+
+    $("#imgContent2").on("click ",".img-preview span",function(){
+        $(this.parentNode).css("display","none");
+        delFilesIndex.push($("#imgContent2 .img-preview").index(this.parentNode));
+    });
 
 
 //分类
@@ -236,6 +285,26 @@ include('conn.php');
         setNone("major");*/
     }
 //ajax
+
+function isInArray(index,delIndex){
+        for(var i=0;i<delIndex.length;i++){
+            if(index===delIndex[i]){
+                return true;
+            }
+        }
+        return false;
+}
+
+function getFilesDate(){
+    var files=$("input[name='files']")[0].files;
+    var filesData=[];
+    for(var i=0;i<files.length;i++){
+        if(!isInArray(i,delFilesIndex)){
+            filesData.push(files[i]);
+        }
+    }
+    return filesData;
+}
     document.getElementsByName("submit")[0].onclick=function(){
         var form=document.getElementsByTagName("form")[0];
         var formData=new FormData(form);
@@ -243,7 +312,7 @@ include('conn.php');
         formData.append("brand",brand);
         formData.append("categories",categories);
 
-        var files=document.getElementsByName("files")[0].files;
+        var files=getFilesDate();
         if(files.length>4){
             alert("只能上传四张图片！多余的图片无效！！")
         }

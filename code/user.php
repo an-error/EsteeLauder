@@ -16,20 +16,25 @@ $statement=$db->query($sql);
 $user=$statement->fetch(PDO::FETCH_ASSOC);
 
 
-$sql="select * from esteelauder.order where status='待付款'";
+$sql="select * from esteelauder.order where status='待付款' and uid='".$uid."'";
 $statement=$db->query($sql);
 $noPay=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
 
-$sql="select * from esteelauder.order where status='待发货'";
+$sql="select * from esteelauder.order where status='待发货' and uid='".$uid."'";
 $statement=$db->query($sql);
 $noManager=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
 
-$sql="select * from esteelauder.order where status='已签收'";
+$sql="select * from esteelauder.order where status='已签收' and uid='".$uid."'";
 $statement=$db->query($sql);
 $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
 
+$sql="select * from esteelauder.order where status='已发货' and uid='".$uid."'";
+$statement=$db->query($sql);
+$noReceive=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
 
-
+$sql="select * from esteelauder.order where status='交易失败' and uid='".$uid."'";
+$statement=$db->query($sql);
+$fail=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
 
 
 ?>
@@ -46,7 +51,7 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
             height:250px;
             position:fixed;
             top:280px;
-            left:200px;
+            left:6%;
         }
 
         #anchor li {
@@ -55,8 +60,8 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
         }
 
         #content{
-            width:1000px;
-            margin:200px auto 100px 500px;
+            width:1100px;
+            margin:150px auto 70px 22%;
         }
 
         #order li{
@@ -145,7 +150,7 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
             color:white;
             background-color: #265a88;
             border:none;
-            margin-left:30px;
+            margin-left:50px;
         }
 
         #userInformation{
@@ -154,7 +159,7 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
            border:1px solid #dfe0e1 ;
             display:none;
             margin-left:250px;
-            padding:30px;
+            padding:50px;
             line-height: 30px;
             font-size:18px;
         }
@@ -188,6 +193,47 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
             font-size: 12px;
             color:red;
         }
+
+        .basic{
+            width:1000px;
+            height:40px;
+            background:#dfe0e1;
+            padding-left:30px;
+        }
+
+        .basic span{
+            margin-right:30px;
+            line-height:40px;
+        }
+
+        .addCss{
+            width:1000px;
+            height:auto;
+            margin:200px auto 100px auto;
+            border:1px solid #dfe0e1;
+        }
+        .padding{
+
+            padding:30px;
+        }
+
+        .fake-comment{
+            position:relative;
+        }
+
+        .fake-comment input[name="comment"]{
+            opacity: 0;
+            z-index:7;
+        }
+        .fake-comment .icon-pingjia{
+            font-size:40px;
+            color:grey;
+            position:absolute;
+            left:140px;
+            top:-10px;
+        }
+
+
     </style>
 </head>
 
@@ -208,8 +254,10 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
                 <nav>
                     <ul>
                         <li ><a>已完成</a></li>
+                        <li ><a>退款</a></li>
                         <li ><a>待付款</a><span class="order-tip"><?php if($noPay!=0){echo $noPay;}?></span></li>
                         <li><a>待发货</a><span class="order-tip"><?php if($noManager!=0){echo $noManager;}?></span></li>
+                        <li><a>待收货</a><span class="order-tip"><?php if($noReceive!=0){echo $noReceive;}?></span></li>
                         <li ><a>待评价</a><span class="order-tip" id="comment"><?php if($noComment!=0){echo $noComment;}?></span></li>
                     </ul>
 
@@ -233,6 +281,8 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
        </div>
 
 
+
+
     </div>
 
 <script>
@@ -241,7 +291,9 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
         map['已完成']="已评价";
         map['待评价']="已签收";
         map['待发货']="待发货";
+        map['待收货']="已发货";
         map['待付款']="待付款";
+        map['退款']="交易失败";
 
         var data=new FormData();
         data.append("status",map[e.target.innerText]);
@@ -289,13 +341,34 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
                 if(this.readyState===4){
                    //document.getElementsByClassName('order-tip')[3].click();
                     //$("#comment").trigger("click");
+                    //location.href="comment.php?orderID="+orderID+"&"
                     location.reload();
                 }
             };
             xhr.open("post","updateStatus.php",true);
             xhr.send(data);
         }
-    })
+    });
+
+    $(".show").on("click",".order-content input[name='comment']",function(){
+        var parent=this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+        var temp=parent.getElementsByClassName("orderID")[0].innerText;
+        var sku=parent.getAttribute('sku');
+        var orderID=temp.split("：")[1];
+        sku=sku.replace(/\#/g,"%23");
+        sku=sku.replace(/\+/g,"%2B");
+        location.href="comment.php?orderID="+orderID+"&sku="+sku;
+    });
+
+    $(".show").on("click",".order-content input[name='return']",function(){
+        console.log(this);
+        var parent=this.parentNode;
+        var temp=parent.getElementsByTagName("h4")[0].innerText;
+        var orderID=temp.split("：")[1];
+        location.href="return.php?orderID="+orderID;
+    });
+
+
 
     $(".displayToBlock").click(function(){
         $("#order").css("display","none");
@@ -306,11 +379,14 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
         $("#userInformation").css("display","none");
         $("#order").css("display","block");
 
-    })
+    });
 
     $("#userInformation input[name='password']").focus(function(){
         $("#userInformation .password2").css("display","block");
-    })
+    });
+
+
+
 
     document.getElementsByName("revise")[0].onclick=function(){
         var form=document.getElementById('userInformation').getElementsByTagName('form')[0];
@@ -346,6 +422,10 @@ $noComment=sizeof($statement->fetchAll(PDO::FETCH_ASSOC));
         xhr.send(formData);
 
     }
+
+
+
+
 </script>
 
 </body>

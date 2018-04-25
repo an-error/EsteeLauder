@@ -7,30 +7,45 @@
  */
 include('module.php');
 include("conn.php");
+include("minHeader.php");
+
+function majorTake($categories){
+    global $db;
+    $sql="select minor from categories where major='".$categories."'";
+    $result=$db->query($sql);
+    $result=$result->fetchAll(PDO::FETCH_ASSOC);
+
+    $production=array();
+    foreach($result as $row){
+        $sql="select id,name,img from production where categories='".$row['minor']."'";
+        $temp=$db->query($sql);
+        $temp=$temp->fetchAll(PDO::FETCH_ASSOC);
+        foreach($temp as $t) {
+            $production[] = $t;
+        }
+    }
+    return $production;
+}
+
 
 $categories=$_REQUEST['categories'];
 if($categories==='face'){
-    $categories='面部';
+    $production=majorTake("面部");
 }else if($categories==='lips'){
-    $categories='唇部';
+    $production=majorTake("唇部");
+}else if($categories==='eyes'){
+    $production=majorTake("眼部");
 }else{
-    $categories='眼部';
-}
-
-$sql="select minor from categories where major='".$categories."'";
-
-$result=$db->query($sql);
-
-$result=$result->fetchAll(PDO::FETCH_ASSOC);
-$production=array();
-foreach($result as $row){
-    $sql="select id,name,img from production where categories='".$row['minor']."'";
+    $categories=$_REQUEST['categories'];
+    $production=array();
+    $sql="select id,name,img from production where categories='".$categories."'";
     $temp=$db->query($sql);
     $temp=$temp->fetchAll(PDO::FETCH_ASSOC);
     foreach($temp as $t) {
         $production[] = $t;
     }
 }
+
 
 
 for($i=0,$j=0;$i<sizeof($production);$i++){
@@ -71,7 +86,7 @@ for($i=0,$j=0;$i<sizeof($production);$i++){
 </head>
 
 <body>
-    <?php include('minHeader.php');?>
+
     <div class="container main">
         <?php foreach($rows as $row):?>
         <div class="row row-margin">
@@ -82,9 +97,10 @@ for($i=0,$j=0;$i<sizeof($production);$i++){
         <?php endforeach;?>
     </div>
 
-
+<?php include("footer.php")?>
 
 <script>
+    $("footer").css("position","relative")
     window.onload=function(){
         var img=document.getElementsByTagName("img");
         for(var i=0;i<img.length;i++){

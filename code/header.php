@@ -266,6 +266,7 @@ session_start();
 
         #shopping{
             width:350px;
+            //width:0;
             height:700px;
             background-color:white;
             box-shadow: 0 0 10px grey;
@@ -276,8 +277,11 @@ session_start();
             overflow-y:auto;
             display:none;
             z-index:150;
+            //transition:width 2s;
 
         }
+
+
 
 
         input[name='toCount']{
@@ -329,6 +333,28 @@ session_start();
             margin:20px auto auto 45%;
         }
 
+        .login-link{
+            display:none;
+            margin:20px auto auto 45%;
+        }
+
+        .cart-top{
+            display:inline-block;
+            width:15px;
+            height:15px;
+            border-radius: 10px;
+            position:absolute;
+            top:-3px;
+            left:18px;
+            color:white;
+            border:none;
+            padding-left:5px;
+        }
+
+        #cart{
+            position: relative;
+        }
+
 
     </style>
 </head>
@@ -340,7 +366,9 @@ session_start();
         <input type="text" id="search"/>
         <i class="iconfont icon-Search" id="iconSearch"></i><span>|</span>
         <i class="iconfont user icon-user"  id="login" onclick="action(<?php echo $_SESSION['is_login']?>)"></i><span>|</span>
-        <i class="iconfont icon-gift" id="cart" ></i>
+        <i class="iconfont icon-gift" id="cart" >
+            <!--<span class="cart-top" style="font-size:10px;color:white;background-color: <?php /*if(sizeof($_SESSION['cart'])!=0){echo 'red';}*/?>"><?php /*if(sizeof($_SESSION['cart'])!=0){echo sizeof($_SESSION['cart']);}*/?></span>-->
+        </i>
         <div id="userSelect">
             <div class="triangle-outer"></div>
             <div class="triangle"></div>
@@ -379,12 +407,12 @@ session_start();
 
     <nav>
         <ul >
-            <li><a>首页</a></li>
+            <li><a href="index.php">首页</a></li>
             <li class="dropdown" onmouseover="block()" onclick="load('face')"><a> 面部</a></li>
             <li class="dropdown" onmouseover="block()  " onclick="load('lips')"><a> 唇部</a></li>
             <li class="dropdown" onmouseover="block()" onclick="load('eyes')"><a>眼部</a></li>
-           <li><a>明星产品</a></li>
-            <li><a>Estée Stories</a></li>
+           <li><a href="hot.php">明星产品</a></li>
+            <li><a href="story.php">Estée Stories</a></li>
         </ul>
     </nav>
     <div class="dropdown-content" >
@@ -401,7 +429,6 @@ session_start();
         <ul >
             <li><a>唇彩</a></li>
             <li><a>唇线笔</a></li>
-            <li><a>唇笔</a></li>
             <li><a>唇膏</a></li>
             <li><a>唇釉</a></li>
         </ul>
@@ -437,6 +464,7 @@ session_start();
     </div>
     <div class="login-bottom"><input type="button" name="submit" value="登录"/></div>
     <a href="#" class="register-link">注册</a>
+    <a href="#" class="login-link">登录</a>
 </div>
 </div>
 
@@ -460,6 +488,11 @@ session_start();
 
     };
 
+    //dropdown click
+    $(".dropdown-content ul ").on("click","li a",function(){
+        location.href="main.php?categories="+$(this).text();
+    })
+
 
 //退出
     function exit(){
@@ -467,7 +500,7 @@ session_start();
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
-                location.reload();
+                location.href="index.php";
             }
         };
         xhr.open("get","exit.php",true);
@@ -506,15 +539,40 @@ session_start();
         formData.append('register','true');
     });
 
+    $(".login-link").click(function(){
+        var formData=new FormData();
+        //$(".register-link").css("display","none");
+        toLogin();
+        formData.append('login','true');
+    });
+
 
     function toRegister(){
+        $("#login-content span").each(function(){
+            $(this).css("display","none");
+        });
         document.getElementsByClassName('register-link')[0].style.display="none";
+        document.getElementsByClassName('login-link')[0].style.display="block";
         document.getElementById('user').style.display="none";
         document.getElementById('phone').style.display="block";
         document.getElementById('email').style.display="block";
         document.getElementById('password2').style.display="block";
         document.getElementById("login-pop").style.height="400px";
         document.getElementsByName('submit')[0].value="注册";
+    }
+
+    function toLogin(){
+        $("#login-content span").each(function(){
+            $(this).css("display","block");
+        });
+        document.getElementsByClassName('register-link')[0].style.display="block";
+        document.getElementsByClassName('login-link')[0].style.display="none";
+        document.getElementById('user').style.display="block";
+        document.getElementById('phone').style.display="none";
+        document.getElementById('email').style.display="none";
+        document.getElementById('password2').style.display="none";
+        document.getElementById("login-pop").style.height="350px";
+        document.getElementsByName('submit')[0].value="登录";
     }
 
     //login or select
@@ -555,6 +613,9 @@ session_start();
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
+                $("#login-content span").each(function(){
+                    $(this).css("display","block");
+                });
                 var result=JSON.parse(this.responseText);
                 if(result['error'].length!==0){
                     if(result['error']['user']){
@@ -605,9 +666,8 @@ session_start();
         $("#shopping").css("display","block");
     });
 
-    $("input[type='number']").blur(function(){
-        var stock=$('.cart-area').attr('stock');
-
+    $("#shopping").on("blur","input[type='number']",function(){
+        var stock=this.parentNode.parentNode.parentNode.parentNode.getAttribute('stock');
         if(this.value>6 && stock>6){
             this.value="6";
         }
@@ -619,6 +679,20 @@ session_start();
             this.value=stock;
         }
     });
+    /*$("input[type='number']").blur(function(){
+        var stock=this.parentNode.parentNode.parentNode.parentNode.getAttribute('stock');
+        console.log(stock);
+        if(this.value>6 && stock>6){
+            this.value="6";
+        }
+        if(this.value<0){
+            this.value="1";
+        }
+
+        if(this.value>stock && stock<6){
+            this.value=stock;
+        }
+    });*/
 
     $("#shopping").mouseleave(function(){
         $("#shopping").css("display","none");
@@ -644,17 +718,16 @@ session_start();
         var node=e.target;
         var parent=node.parentNode.parentNode.parentNode.parentNode;
         var sku=parent.getAttribute('sku');
-        //console.log(sku);
-        //location.href="delSession.php?id='"+sku+"'";
         var data=new FormData();
         data.append('id',sku);
         var xhr=new XMLHttpRequest();
-        //var url="delSession.php?id='"+sku+"'";
 
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
                 parent.style.display="none";
-                document.getElementById('cart-total').innerText=this.responseText;
+                var result=JSON.parse(this.responseText);
+                document.getElementById('cart-total').innerText=result['total'];
+                document.getElementById('shopping').innerHTML=result['html'];
             }
         };
         xhr.open("post","delSession.php",true);
@@ -695,7 +768,8 @@ session_start();
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
-                document.getElementById('cart-total').innerText=this.responseText;
+                var result=JSON.parse(this.responseText);
+                document.getElementById('cart-total').innerText=result['total'];
             }
         };
         xhr.open("post","countChange.php",true);
@@ -717,6 +791,14 @@ session_start();
         }
     }
 
+    //搜索
+    document.getElementById("search").onkeydown=function(){
+        if(event.keyCode=='13'){
+            if(this.value) {
+                location.href="search2.php?search="+this.value;
+            }
+        }
+    }
 
 </script>
 </body>

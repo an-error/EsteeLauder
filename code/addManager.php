@@ -10,22 +10,26 @@
 <meta charset="utf-8">
 <title>无标题文档</title>
 <style>
+    body{
+        font-size:18px;
+    }
 	.error{
 		color:red;
 	}	
 	.text{
 		display:inline-block;
-		width:100px;
+		width:150px;
 		text-align: right;
 		
 	}
     #content{
+        padding:50px;
         display:block;
         width:600px;
         height:400px;
-        position:absolute;
-        left:37%;
-        top:20%;
+        position:relative;
+        margin:180px auto;
+        border:1px solid #dfe0e1;
     }
 
     input[type="button"]{
@@ -34,18 +38,16 @@
         height:30px;
         border:none;
         margin-top:30px;
-        background-color:steelblue;
+        background-color:#265a88;
         color:whitesmoke;
-        position: relative;
-        left:30%;
-        border-radius: 5px;
+        position: absolute;
+        left:43%;
     }
 
 
     input[type="text"],input[type="password"]{
-        border:none;
         border:2px solid gainsboro;
-        border-radius:8px;
+        border-radius: 5px;
     }
 </style>
 </head>

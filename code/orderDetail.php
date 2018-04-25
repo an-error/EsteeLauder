@@ -8,7 +8,6 @@
 
 include("conn.php");
 $orderID=$_REQUEST['orderID'];
-
 $sql="select status,isPay,total,addressID,address from esteelauder.order where id='".$orderID."'";
 $statement=$db->query($sql);
 $result=$statement->fetch(PDO::FETCH_ASSOC);
@@ -75,6 +74,7 @@ print_r($name);*/
     <style>
         body{
             background-color: white;
+            margin-bottom:100px;
         }
         .content{
             width:1000px;
@@ -115,6 +115,14 @@ print_r($name);*/
             display: block;
             margin:auto auto 100px 70%;
         }
+
+        input[type=button]{
+            position:absolute;
+            right:180px;
+            border:none;
+            width:100px;
+            height:30px;
+        }
     </style>
 </head>
 
@@ -154,5 +162,7 @@ print_r($name);*/
         </table>
         <p class="right"><span>订单总金额：</span><?php echo $total;?>元</p>
     </div>
+
+    <input type="button" value="返回" onclick="history.go(-1);"  class="pull-right"/>
 </body>
 </html>

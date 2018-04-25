@@ -337,6 +337,12 @@ session_start();
             margin:20px auto auto 45%;
         }
 
+        .login-link{
+            display:none;
+            margin:20px auto auto 45%;
+        }
+
+
 
     </style>
 </head>
@@ -384,12 +390,12 @@ session_start();
 
     <nav>
         <ul >
-            <li><a>首页</a></li>
+            <li><a href="index.php">首页</a></li>
             <li class="dropdown" onmouseover="block()" onclick="load('face')"><a> 面部</a></li>
             <li class="dropdown" onmouseover="block()  " onclick="load('lips')"><a> 唇部</a></li>
             <li class="dropdown" onmouseover="block()" onclick="load('eyes')"><a>眼部</a></li>
-           <li><a>明星产品</a></li>
-            <li><a>Estée Stories</a></li>
+           <li><a href="hot.php">明星产品</a></li>
+            <li><a href="story.php">Estée Stories</a></li>
         </ul>
     </nav>
     <div class="dropdown-content" >
@@ -406,7 +412,6 @@ session_start();
         <ul >
             <li><a>唇彩</a></li>
             <li><a>唇线笔</a></li>
-            <li><a>唇笔</a></li>
             <li><a>唇膏</a></li>
             <li><a>唇釉</a></li>
         </ul>
@@ -442,6 +447,7 @@ session_start();
     </div>
     <div class="login-bottom"><input type="button" name="submit" value="登录"/></div>
     <a href="#" class="register-link">注册</a>
+    <a href="#" class="login-link">登录</a>
 </div>
 </div>
 
@@ -465,6 +471,11 @@ session_start();
 
     };
 
+    //dropdown click
+    $(".dropdown-content ul ").on("click","li a",function(){
+        location.href="main.php?categories="+$(this).text();
+    })
+
 
 //退出
     function exit(){
@@ -472,7 +483,7 @@ session_start();
         var xhr=new XMLHttpRequest();
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
-                location.reload();
+                location.href="index.php";
             }
         };
         xhr.open("get","exit.php",true);
@@ -506,20 +517,44 @@ session_start();
 //注册
     $(".register-link").click(function(){
         var formData=new FormData();
-        //$(".register-link").css("display","none");
         toRegister();
         formData.append('register','true');
     });
 
+    $(".login-link").click(function(){
+        var formData=new FormData();
+        //$(".register-link").css("display","none");
+        toLogin();
+        formData.append('login','true');
+    });
+
 
     function toRegister(){
+        $("#login-content span").each(function(){
+            $(this).css("display","none");
+        });
         document.getElementsByClassName('register-link')[0].style.display="none";
+        document.getElementsByClassName('login-link')[0].style.display="block";
         document.getElementById('user').style.display="none";
         document.getElementById('phone').style.display="block";
         document.getElementById('email').style.display="block";
         document.getElementById('password2').style.display="block";
         document.getElementById("login-pop").style.height="400px";
         document.getElementsByName('submit')[0].value="注册";
+    }
+
+    function toLogin(){
+        $("#login-content span").each(function(){
+            $(this).css("display","block");
+        });
+        document.getElementsByClassName('register-link')[0].style.display="block";
+        document.getElementsByClassName('login-link')[0].style.display="none";
+        document.getElementById('user').style.display="block";
+        document.getElementById('phone').style.display="none";
+        document.getElementById('email').style.display="none";
+        document.getElementById('password2').style.display="none";
+        document.getElementById("login-pop").style.height="350px";
+        document.getElementsByName('submit')[0].value="登录";
     }
 
     //login or select
@@ -612,9 +647,8 @@ session_start();
         $("#shopping").css("display","block");
     });
 
-    $("input[type='number']").blur(function(){
-        var stock=$('.cart-area').attr('stock');
-
+    $("#shopping").on("blur","input[type='number']",function(){
+        var stock=this.parentNode.parentNode.parentNode.parentNode.getAttribute('stock');
         if(this.value>6 && stock>6){
             this.value="6";
         }
@@ -625,7 +659,7 @@ session_start();
         if(this.value>stock && stock<6){
             this.value=stock;
         }
-    });
+    })
 
     $("#shopping").mouseleave(function(){
         $("#shopping").css("display","none");
@@ -661,7 +695,9 @@ session_start();
         xhr.onreadystatechange=function(){
             if(this.readyState===4){
                 parent.style.display="none";
-                document.getElementById('cart-total').innerText=this.responseText;
+                var result=JSON.parse(this.responseText);
+                document.getElementById('cart-total').innerText=result['total'];
+                document.getElementById('shopping').innerHTML=result['html'];
             }
         };
         xhr.open("post","delSession.php",true);
@@ -721,6 +757,15 @@ session_start();
             location.href="settleAccounts.php";
         }else{
             document.getElementsByClassName("background")[0].style.display="block";
+        }
+    }
+
+    document.getElementById("search").onkeydown=function(){
+        console.log(this.value);
+        if(event.keyCode=='13'){
+            if(this.value) {
+                location.href="search2.php?search="+this.value;
+            }
         }
     }
 

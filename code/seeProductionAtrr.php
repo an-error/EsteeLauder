@@ -116,7 +116,7 @@ $name=$statement->fetch(PDO::FETCH_ASSOC);
             </table>
             <div class="buttonContent">
 
-            <input type="button" value="返回"  name="cancel" onclick="location.href='productionList.php'"/>
+            <input type="button" value="返回"  name="cancel" onclick="history.go(-2);"/>
 
             </div>
         </form>

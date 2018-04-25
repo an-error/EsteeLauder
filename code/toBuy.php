@@ -15,7 +15,7 @@ $statement=$db->query($sql);
 $pid=$statement->fetch(PDO::FETCH_ASSOC);
 $pid=$pid['id'];
 session_start();
-
+unset($_SESSION['buy']);
 preg_match('/[0-9]+/',$production['price'],$matches);
 $production['price']=$matches[0];
 

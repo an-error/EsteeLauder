@@ -64,8 +64,8 @@ $(".marking").on("mouseover","i",function(){
 
 
 $(".marking").on("click","i",function(){
-    var marking=this.parentNode.parentNode.parentNode;
-    var stars=marking.getElementsByTagName("i");
+    var ul=this.parentNode.parentNode;
+    var stars=ul.getElementsByTagName("i");
     var index=parseInt(this.getAttribute('index'));
     for(var i=0; i<5;i++ ){
         if(i<index+1){
@@ -74,6 +74,8 @@ $(".marking").on("click","i",function(){
             stars[i].classList.remove("icon-icon-test");
         }
     }
+    $(".marking").off("mouseover","i");
+    $(".marking").off("mouseout","i");
 })
 
 
