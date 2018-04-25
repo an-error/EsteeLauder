@@ -5,61 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8e03d23-219c-4973-be47-80bcefa26fa9" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/addComment.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/comment.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/commentAction.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/commentDetail.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/footer.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/hot.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/managerComment.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/managerOrderSearch.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/managerReturnGoods.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/managerReturnGoodsAccess.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/managerReturnGoodsDetail.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/report.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/reportData.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/return.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/returnCheck.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/search.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/search2.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/story.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/code/test1.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/module/echarts.js" />
-      <change beforePath="$PROJECT_DIR$/code/1.php" afterPath="$PROJECT_DIR$/code/1.php" />
-      <change beforePath="$PROJECT_DIR$/code/2.php" afterPath="$PROJECT_DIR$/code/2.php" />
-      <change beforePath="$PROJECT_DIR$/code/3.php" afterPath="$PROJECT_DIR$/code/3.php" />
-      <change beforePath="$PROJECT_DIR$/code/5.php" afterPath="$PROJECT_DIR$/code/5.php" />
-      <change beforePath="$PROJECT_DIR$/code/addCart.php" afterPath="$PROJECT_DIR$/code/addCart.php" />
-      <change beforePath="$PROJECT_DIR$/code/addManager.php" afterPath="$PROJECT_DIR$/code/addManager.php" />
-      <change beforePath="$PROJECT_DIR$/code/addOrder.php" afterPath="$PROJECT_DIR$/code/addOrder.php" />
-      <change beforePath="$PROJECT_DIR$/code/addProduction.php" afterPath="$PROJECT_DIR$/code/addProduction.php" />
-      <change beforePath="$PROJECT_DIR$/code/addProductionCheck.php" afterPath="$PROJECT_DIR$/code/addProductionCheck.php" />
-      <change beforePath="$PROJECT_DIR$/code/countChange.php" afterPath="$PROJECT_DIR$/code/countChange.php" />
-      <change beforePath="$PROJECT_DIR$/code/delSession.php" afterPath="$PROJECT_DIR$/code/delSession.php" />
-      <change beforePath="$PROJECT_DIR$/code/details.php" afterPath="$PROJECT_DIR$/code/details.php" />
-      <change beforePath="$PROJECT_DIR$/code/header.php" afterPath="$PROJECT_DIR$/code/header.php" />
-      <change beforePath="$PROJECT_DIR$/code/index.php" afterPath="$PROJECT_DIR$/code/index.php" />
-      <change beforePath="$PROJECT_DIR$/code/main.php" afterPath="$PROJECT_DIR$/code/main.php" />
-      <change beforePath="$PROJECT_DIR$/code/managerIndex.php" afterPath="$PROJECT_DIR$/code/managerIndex.php" />
-      <change beforePath="$PROJECT_DIR$/code/managerList.php" afterPath="$PROJECT_DIR$/code/managerList.php" />
-      <change beforePath="$PROJECT_DIR$/code/managerLogin.php" afterPath="$PROJECT_DIR$/code/managerLogin.php" />
-      <change beforePath="$PROJECT_DIR$/code/minHeader.php" afterPath="$PROJECT_DIR$/code/minHeader.php" />
-      <change beforePath="$PROJECT_DIR$/code/module.php" afterPath="$PROJECT_DIR$/code/module.php" />
-      <change beforePath="$PROJECT_DIR$/code/order.php" afterPath="$PROJECT_DIR$/code/order.php" />
-      <change beforePath="$PROJECT_DIR$/code/orderDetail.php" afterPath="$PROJECT_DIR$/code/orderDetail.php" />
-      <change beforePath="$PROJECT_DIR$/code/productionList.php" afterPath="$PROJECT_DIR$/code/productionList.php" />
-      <change beforePath="$PROJECT_DIR$/code/seeProductionAtrr.php" afterPath="$PROJECT_DIR$/code/seeProductionAtrr.php" />
-      <change beforePath="$PROJECT_DIR$/code/settleAccounts.php" afterPath="$PROJECT_DIR$/code/settleAccounts.php" />
-      <change beforePath="$PROJECT_DIR$/code/showOrder.php" afterPath="$PROJECT_DIR$/code/showOrder.php" />
-      <change beforePath="$PROJECT_DIR$/code/temp.php" afterPath="$PROJECT_DIR$/code/temp.php" />
-      <change beforePath="$PROJECT_DIR$/code/test.php" afterPath="$PROJECT_DIR$/code/test.php" />
-      <change beforePath="$PROJECT_DIR$/code/toBuy.php" afterPath="$PROJECT_DIR$/code/toBuy.php" />
-      <change beforePath="$PROJECT_DIR$/code/user.php" afterPath="$PROJECT_DIR$/code/user.php" />
-      <change beforePath="$PROJECT_DIR$/code/userList.php" afterPath="$PROJECT_DIR$/code/userList.php" />
-      <change beforePath="$PROJECT_DIR$/img/1.1.jpg" afterPath="$PROJECT_DIR$/img/1.1.jpg" />
-      <change beforePath="$PROJECT_DIR$/module/bootstrap/fonts/_notes/dwsync.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/module/bootstrap/js/_notes/dwsync.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/module/jquery.js" afterPath="$PROJECT_DIR$/module/jquery.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/code/index.html" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -113,10 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/user.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
+            <state relative-caret-position="1010">
               <caret line="63" column="37" lean-forward="false" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
               <folding>
                 <marker date="1524616894099" expanded="true" signature="177:215" ph="select * fro... user" />
@@ -190,8 +137,18 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
+            <state relative-caret-position="3904">
               <caret line="125" column="21" lean-forward="false" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -213,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/code/productionList.php" />
         <option value="$PROJECT_DIR$/code/commentAction.php" />
         <option value="$PROJECT_DIR$/code/managerComment.php" />
         <option value="$PROJECT_DIR$/code/addProductionAtrrCheck.php" />
@@ -264,6 +220,7 @@
         <option value="$PROJECT_DIR$/code/countChange.php" />
         <option value="$PROJECT_DIR$/code/settleAccounts.php" />
         <option value="$PROJECT_DIR$/code/user.php" />
+        <option value="$PROJECT_DIR$/code/index.html" />
       </list>
     </option>
   </component>
@@ -292,9 +249,9 @@
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="127.0.0.1" port="88" />
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="545" />
-    <option name="y" value="158" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="30" />
+    <option name="y" value="72" />
     <option name="width" value="1932" />
     <option name="height" value="982" />
   </component>
@@ -490,12 +447,12 @@
       <workItem from="1524375899846" duration="22171000" />
       <workItem from="1524444062800" duration="37226000" />
       <workItem from="1524529479478" duration="880000" />
-      <workItem from="1524615702390" duration="1418000" />
+      <workItem from="1524615702390" duration="1975000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="909126000" />
+    <option name="totallyTimeSpent" value="909683000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -507,7 +464,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="545" y="158" width="1932" height="982" extended-state="1" />
+    <frame x="30" y="72" width="1932" height="982" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24918744" sideWeight="0.4916388" order="0" side_tool="false" content_ui="combo" />
@@ -556,13 +513,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/code/addProductionCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/3.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
@@ -888,14 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="125" column="21" lean-forward="false" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/details.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -930,7 +872,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/user.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
+        <state relative-caret-position="1010">
           <caret line="63" column="37" lean-forward="false" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
           <folding>
             <marker date="1524616894099" expanded="true" signature="177:215" ph="select * fro... user" />
@@ -940,6 +882,22 @@
             <marker date="1524616894099" expanded="true" signature="795:864" ph="select * fro... order" />
             <marker date="1524616894099" expanded="true" signature="962:1032" ph="select * fro... order" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3904">
+          <caret line="125" column="21" lean-forward="false" selection-start-line="125" selection-start-column="21" selection-end-line="125" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
