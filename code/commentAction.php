@@ -14,10 +14,11 @@ if($_POST['action']=="update"){
 }
 
 if($_POST['action']=='delete'){
-    $sql="delete from comment where id='".$_POST['commentID']."'";
+    //$sql="delete from comment where id='".$_POST['commentID']."'";
+    $sql="update comment set isDelete=1 where id='".$_POST['commentID']."'";
 
 }
 
 $statement=$db->prepare($sql);
 $statement->execute();
-echo $statement->rowCount();
+echo $sql;

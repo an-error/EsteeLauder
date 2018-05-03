@@ -277,7 +277,9 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <hr/>
+        <?php if(!$_REQUEST['user']):?>
         <input type="button" name="del" value="删除" />
+        <?php endif;?>
         <?php if(!$comment['isShow']):?>
             <input type="button" name="show" value="展示" />
         <?php endif;?>

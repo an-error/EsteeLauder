@@ -39,6 +39,7 @@ function getSqlData($comment){
             $sql=$sql="select * from production where id='".$g['pid']."'";
             $statement=$db->query($sql);
             $p=$statement->fetch(PDO::FETCH_ASSOC);
+            $production['pid']=$g['pid'];
             $production['name']=$p['name'];
             $production['img']=$p['img'];
             $production['count']=$g['quantity'];
@@ -75,6 +76,17 @@ if($status==='已签收' || $status==='已评价'){
                 if($o['status']=='已签收'){
                     $html.='<div class="fake-comment"><i class="iconfont icon-pingjia"></i><input type="button" value="评价" name="comment" /></div></p>';
                 }
+
+                if($o['status']=='已评价'){
+                    $sql="select id from comment where pid='".$sku['pid']."'";
+                    $statement=$db->query($sql);
+                    $statement->execute();
+                    $commentID=$statement->fetch(PDO::FETCH_ASSOC)['id'];
+                    if($commentID){
+                        $html.='<input type="button" value="查看评论" onclick="location.href=\''.'commentDetail.php?commentID='.$commentID.'&user=1\'"'.' /></p>';
+                    }
+                    }
+
                 $html.='</td>';
                 $html.='</tr></tbody></table></div></div>';
             }

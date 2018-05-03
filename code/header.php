@@ -451,15 +451,15 @@ session_start();
     <div id="login-content">
         <form>
             <p id="user"><i class="iconfont user icon-user"></i><input type="text" name="user" placeholder="手机号码/邮箱"/> </p>
-            <span class="user-login"></span>
+            <span class="user-login error"></span>
             <p id="phone"><i class="iconfont icon-phone"></i><input type="text" name="phone" placeholder="手机号码"/></p>
-            <span class="phone"></span>
+            <span class="phone error"></span>
             <p id="email"><i class="iconfont icon-185078emailmailstreamline"></i><input type="text" name="email" placeholder="邮箱"/> </p>
-            <span class="email"></span>
+            <span class="email error"></span>
             <p><i class="iconfont icon-yypassword1"></i><input type="password" name="password" placeholder="密码"/> </p>
-            <span class="password"></span>
+            <span class="password error"></span>
             <p id="password2"><i class="iconfont icon-yypassword1" ></i><input type="password" name="password2" placeholder="请再次输入密码"/> </p>
-            <span class="password2"></span>
+            <span class="password2 error"></span>
         </form>
     </div>
     <div class="login-bottom"><input type="button" name="submit" value="登录"/></div>
@@ -547,7 +547,13 @@ session_start();
     });
 
 
+    function clearError(){
+        $("#login-content .error").each(function(){
+            $(this).html("");
+        })
+    }
     function toRegister(){
+        clearError();
         $("#login-content span").each(function(){
             $(this).css("display","none");
         });
@@ -557,11 +563,12 @@ session_start();
         document.getElementById('phone').style.display="block";
         document.getElementById('email').style.display="block";
         document.getElementById('password2').style.display="block";
-        document.getElementById("login-pop").style.height="400px";
+        document.getElementById("login-pop").style.height="450px";
         document.getElementsByName('submit')[0].value="注册";
     }
 
     function toLogin(){
+        clearError();
         $("#login-content span").each(function(){
             $(this).css("display","block");
         });
@@ -618,6 +625,7 @@ session_start();
                 });
                 var result=JSON.parse(this.responseText);
                 if(result['error'].length!==0){
+                    clearError();
                     if(result['error']['user']){
                         document.getElementsByClassName('user-login')[0].innerHTML=result['error']['user'];
                     }

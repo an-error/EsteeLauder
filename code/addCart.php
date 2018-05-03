@@ -52,7 +52,7 @@ if($pname){
     if(!$_POST['stock']){
         $id=$pname.'_'."#ffffff";
         if(in_array($id,$idInCart)){
-            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']+1){
+            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']){
                 $_SESSION['cart'][$id]['count']++;
                 //makeHTML($id,$_SESSION['cart'][$id]['count']);
             }
@@ -72,7 +72,7 @@ if($pname){
     }else{
         $id=$pname.'_'.$_POST['colour_num'];
         if(in_array($id,$idInCart)){
-            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']+1){
+            if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']){
                 $_SESSION['cart'][$id]['count']++;
             }
 

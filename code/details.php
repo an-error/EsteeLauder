@@ -22,14 +22,7 @@ $major=$major->fetch(PDO::FETCH_ASSOC);
 $sql="select * from productionattr where pid='".$id."'";
 $color=$db->query($sql);
 $color=$color->fetchAll(PDO::FETCH_ASSOC);
-/*$colour_num=array();
-if(sizeof($color)!==0){
-    foreach($color as $c){
-        $colour_num[]=$c['colour_num'];
-    }
-}else if($color[0]['colour_num']!=="#ffffff"){
-    $colour_num[]=$color[0]['colour_num'];
-}*/
+
 
 $img=array();
 $img[]=$result['img'];
@@ -335,16 +328,21 @@ $commentCount=sizeof($comment);
             height:400px;
 
         }
+        .my-icon-div {
+            position:fixed;
+            top:480px;
+            height:250px;
+            align-content: space-around;
+        }
 
         .my-icon{
+            position: relative;
             width:40px;
             height:40px;
             background-color:#F5F5F5;
-            margin:50px 20px;
-            position: fixed;
+            margin:30px 20px;
             text-align: center;
             line-height: 40px;
-            top:480px;
         }
 
         .my-icon div{
@@ -358,14 +356,6 @@ $commentCount=sizeof($comment);
 
         }
 
-        .detail-icon{
-            top:530px;
-        }
-
-        .comment-icon{
-            top:580px;
-        }
-
         .my-icon a[href='#detail']{
             display:inline-block;
             width:40px;
@@ -376,9 +366,11 @@ $commentCount=sizeof($comment);
 </head>
 
 <body>
+<div class="my-icon-div">
 <div class="my-icon" onclick="history.back();"><div></div><a>返回</a></div>
 <div class="my-icon detail-icon"><div></div><a href="#detail">详情</a></div>
 <div class="my-icon comment-icon"><div></div><a href="#comment">评论</a></div>
+</div>
 
 <div id="fence"><?php /*echo $major['major']*/?><!-- &gt --><?php /*echo $result['categories']*/?></div>
 <div class="container">

@@ -34,7 +34,6 @@ if($user['login']=="true"){
                     $_SESSION['id']=$result['id'];
                     $_SESSION['user']=$phone;
                     $_SESSION['is_login']=true;
-                    /*setcookie('user',strtotime("+1 hours"));*/
                     $success="登录成功!";
                 }else{
                     $error['password']="密码错误！";
@@ -80,6 +79,11 @@ if($user['login']=="true"){
 
 }else{
     //注册
+
+    unset($error['user']);
+    unset($error['password']);
+
+
     if ( !empty( $_POST[ "phone" ] ) ) {
         $phone = test_input( $_POST[ "phone" ] );
         if ( !preg_match( "/^1[34578]{1}\d{9}$/", $phone ) ) {

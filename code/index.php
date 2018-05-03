@@ -23,6 +23,7 @@ include("header.php");
         #wrapper{
             width:1705px;
             height:799px;
+            overflow: hidden;
             position:relative;
             margin-bottom: 40px;
         }
@@ -34,7 +35,7 @@ include("header.php");
 
         #imgs{
             width:1705px;
-            overflow: hidden;
+            height:799px;
             margin:auto;
         }
         #imgs ul{

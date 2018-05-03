@@ -123,7 +123,7 @@ foreach ($orders as $order){
     $(function(){
         $("select").each(function(){
             var value=$(this).attr('option');
-            if(value!=="已签收" && value!=="已评价" && value!=="待付款"){
+            if(value!=="已签收" && value!=="已评价" && value!=="待付款" && value!=="交易失败"){
                 $(this).val(value);
             }else{
                 this.options.length=0;

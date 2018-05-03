@@ -73,13 +73,21 @@
 			left: 280px;
             font-family: FZShuTi ;
 		}
-		
+
+        #accordion2 {
+            width:100%;
+            height:700px;
+            padding:0 0 0 220px;
+            margin-top:20px;
+            box-sizing: border-box;
+        }
 		.nav {
 			width: 220px;
-			height: 700px;
-			position: absolute;
+			height: 100%;
+            margin:0 0 0 -200px;
+			/*position: absolute;
 			left: 0;
-			top: 120px;
+			top: 120px;*/
 			background-color: rgba(252, 252, 252, 1.00);
 			padding:20px;
 		}
@@ -90,7 +98,7 @@
 			top:100px;
 			width:83%;
 			background-color:rgba(252, 252, 252, 1.00);
-			border-radius: 8px;
+			border-radius: 10px;
 		}
 		
 		.accordion-heading a{
@@ -109,6 +117,15 @@
             position:absolute;
             right:5px;
             top:20px;
+        }
+
+        #collapsetwo .accordion-inner ul{
+            list-style-type: none;
+        }
+
+        #collapsetwo .accordion-inner ul li{
+            height:40px;
+            line-height: 40px;
         }
 	</style>
 </head>
@@ -169,26 +186,20 @@
 			</div>
 			<div id="collapsetwo" class="accordion-body collapse ">
 				<div class="accordion-inner">
-					<a href="managerOrder.php" target="frame-content">订单列表</a><br/>
-					<a href="managerOrderSearch.php?status=0" target="frame-content">待付款</a><br/>
-                    <a href="managerOrderSearch.php?status=1" target="frame-content">待发货</a><br/>
-                    <a href="managerOrderSearch.php?status=2" target="frame-content">已签收</a><br/>
-                    <a href="managerOrderSearch.php?status=3" target="frame-content">已评论</a>
+                    <ul>
+					<li><a href="managerOrder.php" target="frame-content">订单列表</a></li>
+					<li><a href="managerOrderSearch.php?status=0" target="frame-content">待付款</a></li>
+                        <li><a href="managerOrderSearch.php?status=1" target="frame-content">待发货</a></li>
+                        <li><a href="managerOrderSearch.php?status=4" target="frame-content">待签收</a></li>
+                        <li><a href="managerOrderSearch.php?status=2" target="frame-content">已签收</a></li>
+                        <li><a href="managerOrderSearch.php?status=3" target="frame-content">已评论</a></li>
+                        <li><a href="managerOrderSearch.php?status=5" target="frame-content">交易失败</a></li>
+                    </ul>
 				</div>
 			</div>
 		</div>
 		
-		<div class="accordion-group">
-			<div class="accordion-heading">
-				<a class="accordion-toggle" data-toggle="collapse" 
-				data-parent="#accordion2" href="#collapseThree">用户管理</a>
-			</div>
-			<div id="collapseThree" class="accordion-body collapse ">
-				<div class="accordion-inner">
-					<a href="userList.php" target="frame-content">用户列表</a><br/>
-				</div>
-			</div>
-		</div>
+
 		
 		<div class="accordion-group">
 			<div class="accordion-heading">
@@ -260,7 +271,10 @@
                     frame.src="search.php?search="+this.value;
                 }
             }
-        }
+        };
+
+
+
 	</script>
 	
 </body>

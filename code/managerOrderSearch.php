@@ -13,6 +13,8 @@ $status[0]="待付款";
 $status[1]="待发货";
 $status[2]="已签收";
 $status[3]="已评价";
+$status[4]="已发货";
+$status[5]="交易失败";
 //echo $_REQUEST['status'];
 $sql="select * from esteelauder.order where status='".$status[$_REQUEST['status']]."'";
 $statement=$db->query($sql);
@@ -149,7 +151,7 @@ foreach ($orders as $order){
     $(function(){
         $("select").each(function(){
             var value=$(this).attr('option');
-            if(value!=="已签收" && value!=="已评价" && value!=="待付款"){
+            if(value!=="已签收" && value!=="已评价" && value!=="待付款" && value!=="已发货" && value!=="交易失败"){
                 $(this).val(value);
             }else{
                 this.options.length=0;

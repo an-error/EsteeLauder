@@ -33,7 +33,9 @@
         }
         fieldset{
             display:block;
-            margin-top:30px;
+            margin:30px auto;
+            width:90%;
+
         }
     </style>
 </head>

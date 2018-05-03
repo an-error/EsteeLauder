@@ -10,7 +10,7 @@ include("module.php");
 include("conn.php");
 
 
-$statement=$db->query("select * from comment ");
+$statement=$db->query("select * from comment where isDelete is null ");
 $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

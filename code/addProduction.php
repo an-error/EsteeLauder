@@ -107,7 +107,7 @@ include('conn.php');
         #content{
             margin:30px auto;
             padding:20px;
-            width:800px;
+            width:1000px;
             position:relative;
         }
 

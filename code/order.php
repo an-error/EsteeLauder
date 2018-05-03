@@ -7,7 +7,7 @@
  */
 
 include("conn.php");
-include("minHeader.php");
+//include("minHeader.php");
 
 session_start();
 if(!$_REQUEST['id']){
@@ -17,7 +17,8 @@ if(!$_REQUEST['id']){
     $orderID=$_REQUEST['id'];
 }
 
-
+print_r($_SESSION['orderID']);
+echo $orderID;
 
 
 

@@ -22,10 +22,10 @@ session_start();
         #shopping-cart{
             width:700px;
             height:auto;
-            position:absolute;
+            /*position:absolute;
             top:20%;
-            left:18%;
-            margin-bottom: 100px;
+            left:18%;*/
+            margin:20% 0 100px 18%;
         }
 
         .cart-block img{
@@ -103,46 +103,47 @@ session_start();
 <?php else:?>
     <p id="continueShopping"><a href="index.php">继续购物</a></p>
 <?php endif;?>
-<div id="shopping-cart">
+<div id="shopping-cart" style="height:<?php if(empty($_SESSION['cart'])) echo '150px';?>">
     <?php if(empty($_SESSION['buy'])):?>
-    <?php if(!empty($_SESSION['cart'])):?>
-    <?php foreach($_SESSION['cart'] as $key=>$cart):?>
-        <div class="cart-block" stock="<?php echo $cart['stock']?>" sku="<?php echo $key?>">
-           <div class="row">
-               <div class="col-md-5">
-                   <img src="<?php echo $cart['img']?>"/>
-               </div>
-               <div class="col-md-7">
-                   <p class="pull-right"><i class="iconfont icon-changyonggoupiaorenshanchu del"></i></p>
-                   <p><?php echo $cart['title1']?> <?php echo $cart['title2']?></p>
-                   <p><span style="background-color: <?php echo $cart['colour_num']?>"></span><?php echo $cart['colour_name']?></p><!--色号-->
-                   <p>数量:<input type="number" min="1" max="6" value="<?php echo $cart['count']?>"/></p>
-                   <p class="pull-right">价格：<?php echo $cart['price']?></p>
-               </div>
-           </div>
-       </div>
-    <?php endforeach;?>
-    <?php endif;?>
+        <?php if(!empty($_SESSION['cart'])):?>
+            <?php foreach($_SESSION['cart'] as $key=>$cart):?>
+                <div class="cart-block" stock="<?php echo $cart['stock']?>" sku="<?php echo $key?>">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="<?php echo $cart['img']?>"/>
+                        </div>
+                        <div class="col-md-7">
+                            <p class="pull-right"><i class="iconfont icon-changyonggoupiaorenshanchu del"></i></p>
+                            <p><?php echo $cart['title1']?> <?php echo $cart['title2']?></p>
+                            <p><span style="background-color: <?php echo $cart['colour_num']?>"></span><?php echo $cart['colour_name']?></p><!--色号-->
+                            <p>数量：<input type="number" min="1" max="6" value="<?php echo $cart['count']?>"/></p>
+                            <p class="pull-right">价格：<?php echo $cart['price']?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach;?>
+        <?php endif;?>
     <?php endif;?>
 
     <?php if(!empty($_SESSION['buy'])):?>
-    <?php foreach($_SESSION['buy'] as $key=>$cart):?>
-        <div class="cart-block" stock="<?php echo $cart['stock']?>" sku="<?php echo $key?>">
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="<?php echo $cart['img']?>"/>
-                </div>
-                <div class="col-md-7">
-                    <p class="pull-right"><i class="iconfont icon-changyonggoupiaorenshanchu del"></i></p>
-                    <p><?php echo $cart['title1']?> <?php echo $cart['title2']?></p>
-                    <p><span style="background-color: <?php echo $cart['colour_num']?>"></span><?php echo $cart['colour_name']?></p><!--色号-->
-                    <p>数量:<input type="number" min="1" max="6" value="<?php echo $cart['count']?>"/></p>
-                    <p class="pull-right">价格：<?php echo $cart['price']?></p>
+        <?php foreach($_SESSION['buy'] as $key=>$cart):?>
+            <div class="cart-block" stock="<?php echo $cart['stock']?>" sku="<?php echo $key?>">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="<?php echo $cart['img']?>"/>
+                    </div>
+                    <div class="col-md-7">
+                        <p class="pull-right"><i class="iconfont icon-changyonggoupiaorenshanchu del"></i></p>
+                        <p><?php echo $cart['title1']?> <?php echo $cart['title2']?></p>
+                        <p><span style="background-color: <?php echo $cart['colour_num']?>"></span><?php echo $cart['colour_name']?></p><!--色号-->
+                        <p>数量:<input type="number" min="1" max="6" value="<?php echo $cart['count']?>"/></p>
+                        <p class="pull-right">价格：<?php echo $cart['price']?></p>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php endforeach;?>
+        <?php endforeach;?>
     <?php endif;?>
+
 
 
 
@@ -158,7 +159,8 @@ session_start();
 <?php include("footer.php")?>
 <script>
 
-    $("footer").css("position","absolute");
+
+
    /* $("input[name='continue']").click(function(){
 
         location.href="address.php";

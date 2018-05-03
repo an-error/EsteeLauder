@@ -470,7 +470,7 @@ echo $_REQUEST['just'];
             }
 
 
-        }
+        };
         $("#cart").click(function(){
             $("#shopping").css("display","none");
         })
