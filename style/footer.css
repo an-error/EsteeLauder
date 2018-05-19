@@ -1,0 +1,84 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    width:100%;
+    height:100%;
+}
+footer{
+    position:relative;
+    bottom:0;
+    width:100%;
+    height:200px;
+    border-top:1px solid #dfe0e1;
+    margin-top:150px;
+}
+
+
+.first>li{
+    display:inline-block;
+    width:150px;
+    height:82px;
+}
+
+.second li{
+    width:100%;
+}
+.second>li a{
+    color:#a3a5a7;
+    display:block;
+}
+
+.second-icon li{
+    width:30px;
+    display:inline-block;
+}
+.second-icon  i{
+    font-size:30px;
+}
+.weixin img{
+    display:none;
+    width:150px;
+    height:150px;
+
+}
+
+#subscribe{
+    /* display:inline-block;
+     margin-left:300px;*/
+    position:absolute;
+    top:50px;
+    left:50%;
+    width:500px;
+    height:100px;
+}
+
+#subscribe p{
+    font-size:20px;
+}
+
+#subscribe input[type='email']{
+    width:300px;
+    height:40px;
+}
+
+#subscribe button{
+    width:100px;
+    height:40px;
+    border:none;
+    color:white;
+    background-color: #262c50;
+}
+
+.footer{
+    width:100%;
+    height:40px;
+    line-height: 40px;
+    padding-left:90%;
+    background-color:#f7f7f8;
+}
+footer>div:nth-child(1){
+    padding:40px;
+    height:160px;
+}

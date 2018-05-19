@@ -1,0 +1,22 @@
+table{
+    margin:50px auto;
+    collapse: none;
+    text-align: center;
+    border:none;
+}
+table thead td{
+    height:50px;
+    border:1px solid #dfe0e1;
+    text-align:center;
+}
+
+table tbody td{
+    height:40px;
+    border:1px solid #dfe0e1;
+}
+
+tbody select{
+    width:200px;
+    height:40px;
+    border:none;
+}

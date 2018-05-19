@@ -1,0 +1,63 @@
+html{
+    height:100%;
+}
+body{
+
+//background: url("../image/beautiful-bloom-blooming-173665.jpg") no-repeat;
+    background-size:100% 100%;
+
+}
+
+#background{
+    width:100%;
+    height:100%;
+//filter:blur(5px);
+}
+
+p{
+    display:inline;
+    line-height: 20px;
+}
+
+input{
+    height:30px;
+    margin:10px 0;
+    border:none;
+    background: transparent;
+    box-shadow:0 0 5px gainsboro;
+}
+#block{
+    display:block;
+    position: absolute;
+    width:500px;
+    height:500px;
+    top:16%;
+    left:36%;
+    text-align: center;
+    border:none;
+    box-shadow: 0 0 1000px #dfe0e1;
+    font-size:18px;
+    line-height: 18px;
+    color:grey;
+}
+input[type="submit"]{
+    width:280px;
+    height:35px;
+    border:none;
+    color:darkgrey;
+    background-color:#EDEDED;
+    filter:alpha(0.5);
+    margin-top:30px;
+}
+img{
+
+    margin:20px auto;
+
+
+}
+#div2{
+    width:500px;
+    text-align: left;
+    position:relative;
+
+}

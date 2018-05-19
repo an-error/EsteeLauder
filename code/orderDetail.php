@@ -71,59 +71,7 @@ print_r($name);*/
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-        body{
-            background-color: white;
-            margin-bottom:100px;
-        }
-        .content{
-            width:1000px;
-            height:auto;
-            margin:50px auto 50px auto;
-            padding:30px;
-            border:1px solid #dfe0e1;
-        }
-
-        .content img{
-            width:100px;
-            height:120px;
-        }
-
-        table span{
-            display:inline-block;
-            width:20px;
-            height:20px;
-            margin-right:20px;
-        }
-
-        table td{
-            text-align: center;
-            border-bottom:1px solid #dfe0e1 ;
-            padding:20px;
-        }
-        table thead td{
-            height:40px;
-        }
-
-        .right{
-            font-size:20px;
-            display: block;
-            margin:40px auto 50px 650px;
-        }
-
-        .backToShopping{
-            display: block;
-            margin:auto auto 100px 70%;
-        }
-
-        input[type=button]{
-            position:absolute;
-            right:180px;
-            border:none;
-            width:100px;
-            height:30px;
-        }
-    </style>
+    <link href="../style/orderDetail.css" rel="stylesheet"/>
 </head>
 
 <body>

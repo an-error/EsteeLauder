@@ -19,24 +19,7 @@ $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-        table{
-            margin:50px auto;
-            collapse: none;
-            text-align: center;
-            border:none;
-        }
-        table thead th{
-            height:50px;
-            border:1px solid #dfe0e1;
-            text-align:center;
-        }
-
-        table tbody td{
-            height:40px;
-            border:1px solid #dfe0e1;
-        }
-    </style>
+    <link href="../style/managerComment.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -76,45 +59,6 @@ $result=$statement->fetchAll(PDO::FETCH_ASSOC);
     </tbody>
 </table>
 
-<script>
-    $("tbody").on("click","input[name='show']",function(){
-        var isShow=confirm("是否展示？");
-        if(isShow){
-            var commentID=$(this.parentNode.parentNode).attr("commentID");
-            var data=new FormData();
-            data.append("commentID",commentID);
-            data.append("action","update");
-            var xhr=new XMLHttpRequest();
-            xhr.onreadystatechange=function(){
-                if(this.readyState===4){
-                    parent.window.refreshFrame();
-                }
-            };
-            xhr.open("post","commentAction.php",true);
-            xhr.send(data);
-        }
-    });
-
-    $("tbody").on("click","input[name='del']",function(){
-        var isDel=confirm("是否删除？");
-        if(isDel ){
-            var commentID=$(this.parentNode.parentNode).attr("commentID");
-            var data=new FormData();
-            data.append("commentID",commentID);
-            data.append("action","delete");
-            var xhr=new XMLHttpRequest();
-            xhr.onreadystatechange=function(){
-                if(this.readyState===4){
-                    //document.frames("content").document.location.reload();
-                    //refreshFrame();
-                    parent.window.refreshFrame();
-                }
-            };
-            xhr.open("post","commentAction.php",true);
-            xhr.send(data);
-        }
-    });
-
-</script>
+<script src="../js/managerComment.js"></script>
 </body>
 </html>

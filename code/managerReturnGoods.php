@@ -19,24 +19,7 @@ $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-        table{
-            margin:50px auto;
-            collapse: none;
-            text-align: center;
-            border:none;
-        }
-        table thead th{
-            height:50px;
-            border:1px solid #dfe0e1;
-            text-align:center;
-        }
-
-        table tbody td{
-            height:40px;
-            border:1px solid #dfe0e1;
-        }
-    </style>
+    <link href="../style/table.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -44,12 +27,12 @@ $result=$statement->fetchAll(PDO::FETCH_ASSOC);
 <table>
     <thead width="1200px">
     <tr>
-        <th width="100px">退货编号</th>
-        <th width="100px">订单编号</th>
-        <th width="100px">退货原因</th>
-        <th width="200px">申请时间</th>
-        <th width="100px">状态</th>
-        <th width="100px">查看</th>
+        <td width="100px">退货编号</td>
+        <td width="100px">订单编号</td>
+        <td width="100px">退货原因</td>
+        <td width="200px">申请时间</td>
+        <td width="100px">状态</td>
+        <td width="100px">查看</td>
     </tr>
     </thead>
     <tbody>

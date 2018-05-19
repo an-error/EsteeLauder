@@ -13,26 +13,7 @@
 <head>
 <meta charset="utf-8">
 <title>无标题文档</title>
-<style>
-
-    table{
-        margin:50px auto;
-        collapse: none;
-        text-align: center;
-        border:none;
-    }
-    table thead th{
-        height:50px;
-        border:1px solid #dfe0e1;
-        text-align:center;
-    }
-
-    table tbody td{
-        height:40px;
-        border:1px solid #dfe0e1;
-    }
-		
-</style>
+    <link href="../style/table.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -40,12 +21,12 @@
 <table border="1" width="1000px" class="tab">
 	<thead>
 		<tr>
-			<th width="18%">序号</th>
-			<th width="18%">姓名</th>
-			<th width="18%">手机号码</th>
-			<th width="18%">email</th>
-			<th width="18%">订单数量</th>
-            <th width="200px">操作</th>
+			<td width="18%">序号</td>
+			<td width="18%">姓名</td>
+			<td width="18%">手机号码</td>
+			<td width="18%">email</td>
+			<td width="18%">订单数量</td>
+            <td width="200px">操作</td>
 		</tr>
 	</thead>
 	<tbody>

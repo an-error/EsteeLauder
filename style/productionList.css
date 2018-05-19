@@ -1,0 +1,26 @@
+.tab{
+    display:block;
+    margin:auto;
+    margin-top:50px;
+    height:auto;
+    border:none;
+    table-layout:fixed;
+}
+
+.tab td,.tab th{
+    border-collapse: collapse;
+    border:1px solid #dfe0e1;
+    text-align:center;
+    height:40px;
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+}
+fieldset{
+    display:block;
+    margin:30px auto;
+    width:90%;
+
+}

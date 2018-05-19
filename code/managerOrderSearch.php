@@ -28,15 +28,6 @@ if($_REQUEST['status']==3){
     }
 }
 
-//print_r($orders);
-
-
-/*$phone=array();
-foreach ($orders as $order){
-    $sql="select phone from user where id='".$order['uid']."'";
-    $statement=$db->query($sql);
-    $name[$order['uid']]=$statement->fetch(PDO::FETCH_ASSOC)['phone'];
-}*/
 
 ?>
 
@@ -45,48 +36,7 @@ foreach ($orders as $order){
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-        table{
-            margin:50px auto;
-            collapse: none;
-            text-align: center;
-        }
-        table thead td{
-            height:60px;
-            border:1px solid #dfe0e1;
-        }
-
-        table tbody td{
-            height:40px;
-            border:1px solid #dfe0e1;
-        }
-        /*.select{
-            position:relative;
-        }
-        .select-content{
-            position:absolute;
-            top:40px;
-            left:0;
-            width:200px;
-            display:none;
-        }
-
-        .select-content ul{
-            list-style-type: none;
-
-        }
-
-        .select-content ul li{
-            width:200px;
-            text-align: center;
-        }*/
-
-        tbody select{
-            width:200px;
-            height:40px;
-            border:none;
-        }
-    </style>
+    <link href="../style/table.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -115,16 +65,7 @@ foreach ($orders as $order){
                 <select option="<?php echo $order['status']?>">
                     <option>待发货</option>
                     <option>已发货</option>
-                    <!--<option>已签收</option>
-                    <option>已评论</option>-->
                 </select>
-
-                <!--<div class="select-content">
-                    <ul>
-                        <li>待发货</li>
-                        <li>已发货</li>
-                    </ul>
-                </div></td>-->
             <td><?php echo $order['isPay']?></td>
             <?php if($_REQUEST['status']==3):?>
             <td><a href="commentDetail.php?commentID=<?php echo $order['commentID']?>">详情</a></td>
@@ -138,54 +79,6 @@ foreach ($orders as $order){
         <?php endforeach;?>
         </tbody>
     </table>
-
-
-
-
-<script>
-    /*$("table").on("click","tbody .select",function(e){
-        alert("0");
-        $(this).find("div").css("display","block");
-    })*/
-
-    $(function(){
-        $("select").each(function(){
-            var value=$(this).attr('option');
-            if(value!=="已签收" && value!=="已评价" && value!=="待付款" && value!=="已发货" && value!=="交易失败"){
-                $(this).val(value);
-            }else{
-                this.options.length=0;
-                var option=$("<option></option>").text(value);
-                $(this).append(option);
-                $(this).val(value);
-
-            }
-
-        })
-    })
-
-    $("table").on("change","select",function(e){
-        var data=new FormData();
-        var option=this.value;
-        data.append("option",option);
-        var orderID=e.target.parentNode.parentNode.getAttribute("orderID");
-        data.append("orderID",orderID);
-
-        var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(this.readyState===4){
-
-            }
-        };
-        xhr.open("post","updateStatus.php",true);
-        xhr.send(data);
-
-    })
-
-    $("table").on("click",".toDetail",function(e){
-        var orderID=e.target.parentNode.parentNode.getAttribute("orderID");
-        location.href="orderDetail.php?orderID="+orderID;
-    })
-</script>
+    <script src="../js/managerOrder.js"></script>
 </body>
 </html>

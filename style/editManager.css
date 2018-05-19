@@ -1,0 +1,46 @@
+.error{
+    color:red;
+}
+.text{
+    display:inline-block;
+    width:100px;
+    text-align: right;
+
+}
+#content{
+    display:block;
+    width:600px;
+    height:400px;
+    position:absolute;
+    left:37%;
+    top:20%;
+}
+
+input[type="button"]{
+    display:inline-block;
+    width:100px;
+    height:30px;
+    border:none;
+    margin-top:30px;
+    background-color:steelblue;
+    color:whitesmoke;
+    position: relative;
+    border-radius: 5px;
+}
+input[name="cancel"]{
+    left:8%;
+}
+
+input[name="edit"]{
+    left:28%;
+}
+
+input[type="text"],input[type="password"]{
+    border:none;
+    border:2px solid gainsboro;
+    border-radius:8px;
+}
+
+#password2{
+    display:none;
+}

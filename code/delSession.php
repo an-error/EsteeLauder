@@ -41,6 +41,9 @@ if(empty($_SESSION['buy'])){
     }
 
     $_SESSION['total']=$total;
+    $_SESSION['html']=$html;
+    $collection['html']=$html;
+    $collection['total']=$total;
 }else{
     unset($_SESSION['buy']);
     $total=0;
@@ -48,8 +51,8 @@ if(empty($_SESSION['buy'])){
 }
 
 
-$_SESSION['html']=$html;
-$_SESSION['total']=$total;
+
+
 $collection['total']=$total;
-$collection['html']=$html;
+
 echo json_encode($collection);

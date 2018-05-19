@@ -1,0 +1,37 @@
+body{
+    margin:100px auto;
+}
+table{
+    margin:50px auto;
+}
+tr{
+    height:50px;
+}
+th,td{
+    border-bottom: 1px solid #dfe0e1;
+    font-weight:200;
+
+}
+th{
+    width:150px;
+    text-align: left;
+
+}
+
+table a{
+    display:inline-block;
+    width:50px;
+    color:steelblue;
+    text-decoration: none;
+}
+
+table a:hover{
+    color:black;
+}
+
+button{
+    position:relative;
+    right:-70%;
+    width:100px;
+    height:30px;
+}

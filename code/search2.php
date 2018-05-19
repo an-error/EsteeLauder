@@ -10,7 +10,7 @@ include("conn.php");
 include("module.php");
 include("minHeader.php");
 $search=$_REQUEST['search'];
-$sql="select * from production where name like  '%".$search."%'";
+$sql="select * from production where name like  '%".$search."%' and  isDelete is null";
 $statement=$db->query($sql);
 $production=$statement->fetchAll();
 
@@ -69,6 +69,10 @@ for($i=0,$j=0;$i<sizeof($production);$i++){
             }
         })
     })
+
+    function loadDetails(id){
+        location.href="details.php?id="+id;
+    }
 </script>
 </body>
 </html>

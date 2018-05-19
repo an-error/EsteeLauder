@@ -17,54 +17,7 @@
 <head>
 <meta charset="utf-8">
 <title>无标题文档</title>
-<style>
-	.error{
-		color:red;
-	}	
-	.text{
-		display:inline-block;
-		width:100px;
-		text-align: right;
-		
-	}
-    #content{
-        display:block;
-        width:600px;
-        height:400px;
-        position:absolute;
-        left:37%;
-        top:20%;
-    }
-
-    input[type="button"]{
-        display:inline-block;
-        width:100px;
-        height:30px;
-        border:none;
-        margin-top:30px;
-        background-color:steelblue;
-        color:whitesmoke;
-        position: relative;
-        border-radius: 5px;
-    }
-    input[name="cancel"]{
-        left:8%;
-    }
-
-    input[name="edit"]{
-        left:28%;
-    }
-
-    input[type="text"],input[type="password"]{
-        border:none;
-        border:2px solid gainsboro;
-        border-radius:8px;
-    }
-
-    #password2{
-        display:none;
-    }
-</style>
+    <link href="../style/editManager.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -85,89 +38,7 @@
 </div>
 
 <script id="return"></script>
-<script>
-    function isJson(str) {
-        try {
-            var obj=JSON.parse(str);
-            if(typeof obj === 'object' && obj ){
-                return true;
-            }else{
-                return false;
-            }
-
-        } catch(e) {
-            console.log('error：'+str+'!!!'+e);
-            return false;
-        }
-        return false;
-    }
-
-
-
-    document.getElementsByName("edit")[0].onclick=function() {
-        var isEdit=confirm("是否确认编辑？编辑之后不可恢复！");
-        if(isEdit===true){
-            var formObject=document.getElementById('form1');
-            var formData = new FormData(formObject);
-            var xhr = new XMLHttpRequest();
-            var result;
-            xhr.onreadystatechange = function () {
-
-                if (this.readyState === 4) {
-                    result = this.responseText;
-                    if (isJson(result)) {
-                        result = eval("(" + this.responseText + ")");
-
-                        if (result.length !== 0) {
-                            if (result['username']) {
-                                document.getElementsByClassName('error')[0].innerHTML = result['username'];
-                            }
-                            if (result['password']) {
-                                document.getElementsByClassName('error')[1].innerHTML = result['password'];
-                            }
-                            if (result['password2']) {
-                                document.getElementsByClassName('error')[2].innerHTML = result['password2'];
-                            }
-                            if (result['phone']) {
-                                document.getElementsByClassName('error')[3].innerHTML = result['phone'];
-                            }
-                            if (result['IDCard']) {
-                                document.getElementsByClassName('error')[4].innerHTML = result['IDCard'];
-                            }
-
-
-                            if (result['email']) {
-                                document.getElementsByClassName('error')[5].innerHTML = result['email'];
-                            }
-                        }
-                    } else {
-                        document.getElementById('return').innerText = result;
-                        location.href="managerList.php";
-
-                    }
-                }
-            };
-            xhr.open('post','editManagerCheck.php?id=<?php echo $id?>',true);
-            xhr.send(formData);
-
-
-            return false;
-        }
-
-    };
-
-    document.getElementsByName('password')[0].onchange=function(){
-       document.getElementById('password2').style.cssText="display:block";
-    };
-
-    document.getElementsByName('cancel')[0].onclick=function(){
-        /*var isCancel=confirm("是否取消此次操作？");
-        if(isCancel===true){
-            history.go(-1);
-        }*/
-    }
-	
-</script>
+<script src="../js/editManager.js"></script>
 
 </body>
 </html>

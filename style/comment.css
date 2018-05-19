@@ -1,0 +1,149 @@
+header{
+    position:relative;
+}
+#comment{
+    width:950px;
+    height:auto;
+    margin: 100px auto;
+    border:1px solid #dfe0e1;
+    padding:30px;
+}
+
+.little-content img{
+    width:150px;
+    height:180px;
+    margin-bottom: 20px;
+}
+.little-content div{
+    width:160px;
+}
+
+.little-content{
+    width:200px;
+    float:left;
+    margin-right:30px;
+}
+
+.comment-area textarea{
+    width:600px;
+    height:150px;
+    padding:10px;
+}
+.comment-area input[name='show']{
+    display:block;
+    margin:20px;
+}
+
+.marking ul{
+    display:block;
+    list-style-type: none;
+    height:50px;
+    width:900px;
+    line-height:50px;
+}
+
+.marking li{
+    float:left;
+}
+
+.marking ul li:nth-child(7){
+    display:inline-block;
+    width:350px;
+    height:50px;
+    margin-left:100px;
+    color:red;
+}
+
+.marking li:nth-child(1){
+    display: inline-block;
+    margin-right:30px;
+}
+
+.marking .icon-xingxing{
+    font-size:35px;
+    color:grey;
+}
+
+.marking .icon-icon-test{
+    font-size:40px;
+    color:gold;
+}
+.marking{
+    padding:30px;
+    width:900px;
+    height:200px;
+}
+
+#comment input[name='toComment']{
+    display:block;
+    width:150px;
+    height:40px;
+    font-size:16px;
+    background-color: #265a88;
+    color:white;
+    border:none;
+    margin:40px auto 30px auto;
+}
+
+.comment-area .message{
+    height:350px;
+    padding:20px;
+}
+
+.fake{
+    position:relative;
+}
+.fake input{
+    opacity:0;
+    position:absolute;
+    left:260px;
+    top:20px;
+}
+.fake .iconfont{
+    font-size:40px;
+    position:absolute;
+    left:260px;
+}
+
+.fake .iconfont span{
+    font-size:15px;
+    margin-left:20px;
+}
+
+.fake .iconfont span:nth-child(2){
+    color:grey;
+}
+
+#imgContent{
+    width:650px;
+    height:100px;
+//background-color: #265a88;;
+    margin:80px auto auto 200px;
+}
+
+#imgContent img{
+    width:100px;
+    height:100px;
+}
+
+.img-preview{
+    width:100px;
+    height:100px;
+    display:inline-block;
+    margin:10px;
+    position:relative;
+}
+.img-preview span{
+    position:absolute;
+    top:8px;
+    left:10px;
+    color:grey;
+}
+.img-preview img{
+    width:90px;
+    height:90px;
+}
+
+.img-preview span:hover{
+    color:red;
+}

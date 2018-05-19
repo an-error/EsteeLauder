@@ -29,30 +29,44 @@ function setHTML($id,$count){
 
 if(empty($_SESSION['buy'])){
     $total=$_SESSION['total'];
-    if($_SESSION['cart'][$id]['count']<7 && $count<$_SESSION['cart'][$id]['stock']+1){
-        $_SESSION['cart'][$id]['count']=$count;
-        $total=0;
-        $html="";
-        foreach($_SESSION['cart'] as $key=>$value){
-            $total+=$value['price']*$value['count'];
-            $html.=setHTML($key,$value['count']);
-        }
-        $html.="<p>总计：<span id='cart-total'>"."￥".$total."</span></p>";
-        $html.="<input type='button' name='toCount' value='去结算' onclick='toCount()'/>";
-        $_SESSION['html']=$html;
+   if($count>=6 && $_SESSION['cart'][$id]['stock']>=6){
+       $count=6;
+   }else if($count<=0){
+       $count=1;
+   }else if($count>$_SESSION['cart'][$id]['stock'] && $_SESSION['cart'][$id]['stock']<6){
+       $count=$_SESSION['cart'][$id]['stock'];
+   }
 
-        $_SESSION['total']=$total;
+    $total=0;
+    $html="";
+    $_SESSION['cart'][$id]['count']=$count;
+    foreach($_SESSION['cart'] as $key=>$value){
+        $total+=$value['price']*$value['count'];
+        $html.=setHTML($key,$value['count']);
     }
+    $html.="<p>总计：<span id='cart-total'>"."￥".$total."</span></p>";
+    $html.="<input type='button' name='toCount' value='去结算' onclick='toCount()'/>";
+    $_SESSION['html']=$html;
+    $_SESSION['total']=$total;
+
 
 }else{
     $total=$_SESSION['buyTotal'];
-    if($_SESSION['buy'][$id]['count']<7 && $count<$_SESSION['buy'][$id]['stock']+1){
-        $_SESSION['buy'][$id]['count']=$count;
-        $total=$_SESSION['buy'][$id]['price']*$count;
-        $_SESSION['buyTotal']=$total;
-    }else{
-        $count=$_SESSION['buy'][$id]['count'];
+
+
+    if($count>=6 && $_SESSION['buy'][$id]['stock']>=6){
+        $count=6;
+    }else if($count<=0){
+        $count=1;
+    }else if($count>$_SESSION['buy'][$id]['stock'] && $_SESSION['buy'][$id]['stock']<6){
+        $count=$_SESSION['buy'][$id]['stock'];
     }
+
+    $_SESSION['buy'][$id]['count']=$count;
+    $total=$_SESSION['buy'][$id]['price']*$count;
+    $_SESSION['buyTotal']=$total;
+
+
 
 }
 

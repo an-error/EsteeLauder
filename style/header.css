@@ -1,0 +1,334 @@
+header{
+    background-color:white;
+    width:100%;
+    height:120px;
+
+    border-bottom: 1px solid #dfe0e1;
+//font-family:STFangsong;
+    font-weight: 600;
+}
+
+#logo{
+    width:250px;
+    height:100px;
+    position:absolute;
+    left:0;
+
+}
+
+ul{
+    list-style-type:none;
+}
+
+header nav  li{
+    float:left;
+}
+
+header nav li a{
+    display:block;
+    width:100px;
+    height:50px;
+    line-height:50px;
+    font-size:18px;
+    color:black;
+    text-decoration: none;
+}
+
+header nav{
+    position:absolute;
+    top:70px;
+    left:25%;
+    font-family:STFangsong;
+}
+
+header nav li:nth-child(6) a{
+    width:180px;
+}
+
+
+.dropdown-content li{
+
+    float:left;
+}
+.dropdown-content ul li:nth-child(1){
+    margin-left:700px;
+}
+
+.dropdown-content ul{
+    display:block;
+
+}
+.dropdown-content{
+    font-family:STFangsong;
+    width:100%;
+    height:300px;
+    position:absolute;
+    top:120px;
+    background-color: white;
+    text-align: center;
+    padding:30px 10px;
+    display:none;
+    z-index:100;
+}
+
+.dropdown-content a{
+    display:inline-block;
+    text-decoration: none;
+    color:black;
+    width:70px;
+    height:40px;
+    line-height:40px;
+    font-size:15px;
+
+}
+
+
+
+.dropdown-content img{
+    position:absolute;
+    width:448px;
+    height:235px;
+    left:10px;
+    top:30px;
+}
+
+
+.dropdown-content li:hover a{
+    color:grey;
+}
+
+
+
+.background{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:rgba(139,138,138,0.50);
+    opacity: 50;
+    display:none;
+    z-index:180;
+    overflow: hidden;
+}
+
+#login-pop{
+    width:320px;
+    height:350px;
+    position:absolute;
+    left:40%;
+    top:25%;
+    background-color:white;
+}
+
+.close-button{
+    position:relative;
+    left:-30px;
+    top:10px;
+}
+
+.close-button:hover{
+    color:darkred;
+}
+
+
+
+#login-content{
+    margin-top:50px;
+    padding:30px;
+}
+
+#login-content i{
+    font-size:25px;
+    display:inline-block;
+    margin-right:20px;
+}
+
+.login-bottom input{
+    border:none;
+    display:block;
+    margin-left:37%;
+    width:80px;
+    height:30px;
+    background-color: #265a88;
+    color:white;
+}
+#password2,#phone,#email{
+    display:none;
+}
+
+#login-content span{
+    color:darkred;
+    display:block;
+    margin-left:60px;
+}
+
+#search{
+    display:inline-block;
+    width:180px;
+    height:30px;
+    border:none;
+    border:1px solid grey;
+    border-radius:10px;
+    margin-right:10px;
+    visibility:hidden;
+
+}
+
+#user-area i{
+    font-size:20px;
+    display:inline-block;
+    margin-right:10px;
+}
+
+#user-area{
+    position:absolute;
+    top:20PX;
+    right:30px;
+}
+
+#user-area span{
+    font-size:30px;
+    color:grey;
+    font-weight:100;
+}
+
+#userSelect{
+    width:140px;
+    height:145px;
+    background-color:white;
+    z-index:120;
+    display:none;
+    position:absolute;
+    top:52px;
+    right:10px;
+    text-align: center;
+//border:1px solid grey;
+    box-shadow: 0 0 5px grey;
+    font-weight: 400;
+}
+
+.triangle-outer{
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width: 10px;
+    border-color: transparent transparent #dfe0e1 transparent;
+    position:absolute;
+    top:-20px;
+    left:78px;
+}
+
+.triangle{
+    width:0;
+    height:0;
+    border-style:solid;
+    border-width: 10px;
+    border-color: transparent transparent white transparent;
+    position:absolute;
+    top:-18px;
+    left:78px;
+}
+
+#userSelect ul{
+    padding:0;
+}
+#userSelect li {
+    width:100%;
+    text-align: left;
+    display: block;
+    padding:10px;
+//border-bottom:#737373 1px solid;
+}
+
+
+
+#userSelect li:hover{
+    background-color:#EDEDED;
+}
+
+#shopping{
+    width:350px;
+//width:0;
+    height:700px;
+    background-color:white;
+    box-shadow: 0 0 10px grey;
+    position:absolute;
+    right:0;
+    top:70px;
+    padding:30px 10px 50px 10px;
+    overflow-y:auto;
+    display:none;
+    z-index:150;
+//transition:width 2s;
+
+}
+
+
+
+
+input[name='toCount']{
+
+    width:200px;
+    height:30px;
+    background-color:black;
+    color:white;
+    border:none;
+    margin:30px auto 40px 80px;
+}
+
+
+  .cart-area{
+      width:320px;
+      height:200px;
+  //border-bottom: 1px solid grey;
+      margin-bottom:20px;
+  }
+
+.cart-area .row{
+    width:320px
+}
+.cart-area .row img{
+    width:100px;
+    height:130px;
+    float:left;
+}
+
+.cart-area p{
+    font-size:10px;
+}
+
+.cart-area  input[type='number']{
+    display:inline-block;
+    margin-left:20px;
+    height:20px;
+
+}
+
+
+.register-link{
+    display:inline-block;
+    margin:20px auto auto 45%;
+}
+
+.login-link{
+    display:none;
+    margin:20px auto auto 45%;
+}
+
+.cart-top{
+    display:inline-block;
+    width:15px;
+    height:15px;
+    border-radius: 10px;
+    position:absolute;
+    top:-3px;
+    left:18px;
+    color:white;
+    border:none;
+    padding-left:5px;
+}
+
+#cart{
+    position: relative;
+}

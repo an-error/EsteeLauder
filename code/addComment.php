@@ -9,7 +9,7 @@
 
 include("conn.php");
 
-
+//print_r($_POST);
 
 $sql="select * from ordergoods where id='".$_POST['orderID']."'";
 $statement=$db->query($sql);

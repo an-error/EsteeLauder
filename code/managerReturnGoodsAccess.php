@@ -26,8 +26,22 @@ if($_POST['access']=="驳回申请"){
     $statement=$db->prepare($sql);
     $statement->execute();
     $sql="update returnGoods set status='退款' where id='".$_POST['returnID']."'";
+    $statement=$db->prepare($sql);
+    $statement->execute();
+    $sql="select * from ordergoods where id='".$orderID."'";
+    $statement=$db->query($sql);
+    $returnGoods=$statement->fetchAll(PDO::FETCH_ASSOC);
+    foreach($returnGoods as $goods){
+        $sql="update productionattr set stock=stock+".$goods['quantity']." where sku='".$goods['sku']."'";
+        $statement=$db->prepare($sql);
+        $statement->execute();
+    }
 }
 
-$statement=$db->prepare($sql);
-$statement->execute();
+
+if($_POST['access']!="退款"){
+    $statement=$db->prepare($sql);
+    $statement->execute();
+}
+
 echo $statement->rowCount();

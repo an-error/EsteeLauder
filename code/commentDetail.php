@@ -154,10 +154,10 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
         }
 
         #imgContent{
-            width:600px;
+            width:650px;
             height:100px;
             //background-color: #265a88;
-            margin:80px auto auto 200px;
+            margin:80px auto auto 150px;
             position:relative;
         }
 
@@ -166,10 +166,10 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
             height:100px;
         }
 
-        #imgContent img:nth-child(6){
+        /*#imgContent img:nth-child(6){
             width:300px;
             height:350px;
-        }
+        }*/
 
         .comment-area .color{
             display: inline-block;
@@ -185,8 +185,8 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
             width:300px;
             height:350px;
             position:absolute;
-            left:650px;
-            top:-50px;
+            right:-100px;
+            top:150px;
         }
 
         .comment-content-big-img img{
@@ -203,7 +203,7 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
             margin-right:50px;
         }
 
-        #comment input[name="del"]{
+        #comment input[name="back"]{
             margin:30px 50px 30px 350px;
         }
     </style>
@@ -211,7 +211,7 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
 
 <body>
 
-    <div id="comment" >
+    <div id="comment" commentID="<?php echo $comment['id']?>">
         <div class="comment-area">
             <div class="message">
             <div class="little-content">
@@ -226,12 +226,7 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
                     <p>评价：<?php echo $comment['content']?></p>
 
                 </div>
-                <!--<div class="fake">
-                    <i class="iconfont icon-photo"><span>晒照片</span><span>最多可上传5张</span></i>
-                    <form name="send">
-                    <input type="file" name="files" multiple onchange="preview(this)" accept="image/jpeg,image/gif,image/png"/>
-                    </form>
-                </div>-->
+
                 <div id="imgContent">
                     <span>上传的照片：</span>
                     <img src="<?php echo $comment['img0']?>" />
@@ -277,13 +272,14 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <hr/>
-        <?php if(!$_REQUEST['user']):?>
+        <input type="button" name="back" value="返回" onclick="history.go(-1);" />
         <input type="button" name="del" value="删除" />
-        <?php endif;?>
+        <?php /*if(!$_REQUEST['user']):*/?><!--
+        <input type="button" name="del" value="删除" />
+        --><?php /*endif;*/?>
         <?php if(!$comment['isShow']):?>
             <input type="button" name="show" value="展示" />
         <?php endif;?>
-        <input type="button" name="back" value="返回" onclick="history.go(-1);" />
     </div>
 
     <script>
@@ -315,14 +311,15 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
         $("#comment").on("click","input[name='show']",function(){
             var isShow=confirm("是否展示？");
             if(isShow){
-                var commentID=$(this.parentNode.parentNode).attr("commentID");
+                var commentID=$(this.parentNode).attr("commentID");
                 var data=new FormData();
+                console.log(commentID);
                 data.append("commentID",commentID);
                 data.append("action","update");
                 var xhr=new XMLHttpRequest();
                 xhr.onreadystatechange=function(){
                     if(this.readyState===4){
-                        history.go(-1);
+                        window.location.href = document.referrer;
                     }
                 };
                 xhr.open("post","commentAction.php",true);
@@ -333,7 +330,7 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
         $("#comment").on("click","input[name='del']",function(){
             var isDel=confirm("是否删除？");
             if(isDel ){
-                var commentID=$(this.parentNode.parentNode).attr("commentID");
+                var commentID=$(this.parentNode).attr("commentID");
                 var data=new FormData();
                 data.append("commentID",commentID);
                 data.append("action","delete");
@@ -341,7 +338,7 @@ $sku=$statement->fetch(PDO::FETCH_ASSOC);
                 xhr.onreadystatechange=function(){
                     if(this.readyState===4){
                         //document.frames("content").document.location.reload();
-                        history.go(-1);
+                        window.location.href = document.referrer;
                     }
                 };
                 xhr.open("post","commentAction.php",true);

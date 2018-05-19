@@ -20,94 +20,7 @@ $address=$statement->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-        .address{
-            width:700px;
-            height:150px;
-            margin:160px auto 100px 420px;
-            border:1px dashed #dfe0e1;
-            padding:20px;
-            font-size:16px;
-
-        }
-
-        .address span{
-            display:inline-block;
-            width:100px;
-            height:30px;
-            line-height: 30px;
-            text-align: right;
-            margin-right:20px;
-        }
-
-        #shopping-cart{
-            width:700px;
-            height:auto;
-            margin-left:400px;
-            /*position:absolute;
-            top:20%;
-            left:18%;*/
-            margin-bottom: 100px;
-        }
-
-        .cart-block img{
-            width:150px;
-            height:180px;
-        }
-
-        .cart-block{
-            margin:40px;
-            padding-bottom:40px;
-            border-bottom: 1px solid #dfe0e1;
-        }
-
-        .cart-block .row span{
-            display:inline-block;
-            width:20px;
-            height:20px;
-            margin-right:30px;
-        }
-
-        #account{
-            width:700px;
-            margin:150px auto 200px 420px;
-        }
-
-        #account p{
-            font-size:20px;
-        }
-
-        #account div{
-            margin:50px auto 50px 450px;
-        }
-
-        #account input{
-            width:50px;
-            height:30px;
-            border:none;
-            color:white;
-            margin-right:20px;
-        }
-
-        #account input[name="toAccount"]{
-            width:120px;
-            height:30px;
-            background-color: #265a88;
-        }
-
-        #account input[name="backToAddress"]:hover{
-            background-color: #265a88;
-        }
-
-        .account-text{
-            margin-left:430px;
-        }
-
-        .account-text textarea{
-            width:500px;
-            height:100px;
-        }
-    </style>
+    <link href="../style/account.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -167,30 +80,6 @@ $address=$statement->fetch(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-
-
-
-<script>
-    document.getElementsByName("toAccount")[0].onclick=function(){
-        var isPay=confirm("是否支付？");
-        var data=new FormData();
-        data.append("isPay",isPay);
-        var text=document.getElementsByTagName("textarea")[0].value;
-        data.append('text',text);
-        var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(this.readyState===4){
-                document.getElementById("shopping").innerHTML="";
-                location="order.php"
-            }
-        };
-        xhr.open("post","addOrder.php",true);
-        xhr.send(data);
-    }
-
-    $("#cart").click(function(){
-        $("#shopping").css("display","none");
-    })
-</script>
+<script src="../js/account.js"></script>
 </body>
 </html>

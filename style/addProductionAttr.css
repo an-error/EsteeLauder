@@ -1,0 +1,48 @@
+#content{
+    width:980px;
+    height:auto;
+    margin:40px;
+}
+input[type='text'],input[type="number"]{
+    border:none;
+    display:inline-block;
+    width:200px;
+    height:30.4px;
+
+}
+
+.tab{
+    display:block;
+    margin:auto;
+    margin-top:50px;
+    height:auto;
+    border:none;
+
+}
+
+.tab td,.tab th{
+    border-collapse: collapse;
+    border-color:rgba(170,161,161,1.00);
+    text-align:center;
+    height:30px;
+}
+tfoot td{
+    border:none;
+    display:inline-block;
+    margin-top:30px;
+}
+
+.buttonContent{
+    margin:30px;
+    width:800px;
+}
+
+#appendRow,#delRow{
+    display:inline-block;
+    margin-left:30px;
+}
+
+.buttonContent input[name="submit"]{
+    display:inline-block;
+    margin-left:450px;
+}

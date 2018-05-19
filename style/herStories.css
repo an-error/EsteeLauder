@@ -1,0 +1,93 @@
+#myVideo{
+    position:relative;
+    left:28%;
+    top:280px;
+}
+
+#logo-video{
+    position:absolute;
+    top:140px;
+    left:23%;
+    width:300px;
+    height:100px;
+}
+
+#container{
+    width:1200px;
+    height:auto;
+    margin:auto;
+    position:relative;
+}
+
+#logo-story{
+    position:relative;
+    left:320px;
+}
+hr{
+    margin-top:400px;
+    clear:both;
+}
+.row img{
+    float:left;
+}
+
+.row {
+    margin-bottom: 40px;
+}
+
+.estee{
+    position:relative;
+    left:13%;
+}
+
+#story{
+    margin-top:70px;
+}
+.estee  p{
+    position:absolute;
+    top:100px;
+    left:58%;
+    font-size:30px;
+    color:white;
+    font-family: STLiti;
+}
+
+#story textarea{
+    width:900px;
+    height:270px;
+    display:block;
+    margin:40px auto;
+    font-family: STLiti;
+    font-size:20px;
+    border:none;
+}
+#story textarea:nth-child(2){
+    width:1200px;
+    height:500px;
+}
+
+.hepburn {
+    position:relative;
+}
+
+.hepburn>div{
+    position:absolute;
+    top:400px;
+    left:700px;
+    width:400px;
+    height:100px;
+    color:black;
+}
+
+.hepburn p{
+    color:black;
+    width:150px;
+    font-size:30px;
+    font-family: STLiti;
+}
+
+.hepburn span{
+    display:block;
+    padding-left:70px;
+}
+

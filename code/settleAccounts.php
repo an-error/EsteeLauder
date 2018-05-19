@@ -16,86 +16,12 @@ session_start();
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-
-
-        #shopping-cart{
-            width:700px;
-            height:auto;
-            /*position:absolute;
-            top:20%;
-            left:18%;*/
-            margin:20% 0 100px 18%;
-        }
-
-        .cart-block img{
-            width:150px;
-            height:180px;
-        }
-
-        .cart-block{
-            margin:40px;
-            padding-bottom:40px;
-            border-bottom: 1px solid #dfe0e1;
-        }
-
-        .cart-block .row span{
-            display:inline-block;
-            width:20px;
-            height:20px;
-            margin-right:30px;
-        }
-
-        #continueShopping,#backToUser{
-            display:block;
-            width:700px;
-            height:auto;
-            position:absolute;
-            top:17%;
-            left:18%;
-            border-bottom: 1px solid #dfe0e1;
-        }
-
-        #account{
-            position:fixed;
-            top:200px;
-            right:100px;
-        }
-
-        #account div{
-            border:1px solid #dfe0e1;
-            margin-bottom: 20px;
-        }
-
-        #account p ,#account input{
-            display:block;
-            width:200px;
-            height:30px;
-            line-height: 30px;
-        }
-
-        #account p:nth-child(1){
-            text-align: center;
-            border-bottom:1px solid #dfe0e1 ;
-            line-height: 30px;
-        }
-
-        #account p:nth-child(2){
-            padding-left:20px;
-        }
-
-        #account input{
-            background-color: #265a88;
-            color:white;
-            border:none;
-        }
-
-    </style>
+    <link href="../style/settleAccounts.css" rel="stylesheet"/>
 
 
 </head>
 
-<body>
+<body style="height:<?php if(empty($_SESSION['buy'])|| empty($_SESSION['cart'])){echo '400px';}?>">
 
 <?php if($_REQUEST['back']):?>
     <p id="backToUser"><a href="user.php">返回</a></p>
@@ -154,80 +80,12 @@ session_start();
     <p>账单</p>
     <p>总计：￥<span id="total"><?php if(empty($_SESSION['buy'])){echo $_SESSION['total'];}else{echo $_SESSION['buyTotal'];}?></span></p>
     </div>
+    <?php if(!empty($_SESSION['buy'])|| !empty($_SESSION['cart'])):?>
     <input type="button" name="continue" value="继续结账" onclick="toContinue(<?php echo $_SESSION['is_login']?>)"/>
+    <?php endif;?>
 </div>
 <?php include("footer.php")?>
-<script>
-
-
-
-   /* $("input[name='continue']").click(function(){
-
-        location.href="address.php";
-    })*/
-
-    function toContinue(isLogin){
-        if(isLogin){
-            location.href="address.php";
-        }else{
-            document.getElementsByClassName('background')[0].style.display="block";
-        }
-    }
-
-    $(".del").click(function(e){
-        {
-            var node=e.target;
-            var parent=node.parentNode.parentNode.parentNode.parentNode;
-            var sku=parent.getAttribute('sku');
-            //console.log(sku);
-            //location.href="delSession.php?id='"+sku+"'";
-            var data=new FormData();
-            data.append('id',sku);
-            var xhr=new XMLHttpRequest();
-            //var url="delSession.php?id='"+sku+"'";
-
-            xhr.onreadystatechange=function(){
-                if(this.readyState===4){
-                    parent.style.display="none";
-                    var result=JSON.parse(this.responseText);
-                    document.getElementById('total').innerText=result['total'];
-                    if(result['total']===0){
-                        document.getElementById('account').style.display="none";
-                    }
-
-                }
-            };
-            xhr.open("post","delSession.php",true);
-            xhr.send(data);
-
-
-        }
-    });
-
-    $("#shopping-cart").on("change",".cart-block",function(e){
-        var node=e.target;
-        var parent=node.parentNode.parentNode.parentNode.parentNode;
-
-        var data=new FormData();
-        data.append('sku',parent.getAttribute('sku'));
-        data.append("count",node.value);
-
-        var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(this.readyState===4){
-                var result=JSON.parse(this.responseText);
-                document.getElementById('total').innerText=result['total'];
-                node.value=result['count'];
-            }
-        };
-        xhr.open("post","countChange.php",true);
-        xhr.send(data);
-    });
-
-    $("#cart").click(function(){
-        $("#shopping").css("display","none");
-    })
-</script>
+<script src="../js/settleAccounts.js"></script>
 
 </body>
 </html>

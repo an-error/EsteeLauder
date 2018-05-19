@@ -23,12 +23,12 @@ for($i=0;$i<sizeof($result);$i++){
 }
 
 if(in_array($id,$pid)){
-    $sql="delete from productionattr where pid='".$id."'";
+    $sql="update productionattr set isDelete=1 where pid='".$id."'";
     $statement=$db->prepare($sql);
     $result0=$statement->execute() or die ( '程序运行出错,出错信息:' . print_r( $db->errorInfo(),TRUE ) );
 }
 
-$sql="delete from production where id='".$id."'";
+$sql="update production set isDelete=1 where id='".$id."'";
 $statement=$db->prepare($sql);
 $result1=$statement->execute() or die ( '程序运行出错,出错信息:' . print_r( $db->errorInfo(),TRUE ) );
 

@@ -1,0 +1,84 @@
+input[name="pName"]{
+    width:450px;
+    height:30px;
+}
+.radio img{
+    width:150px;
+    height:150px;
+}
+
+.radio{
+    width:160px;
+    height:160px;
+    float:left;
+    margin-left:40px;
+
+}
+
+
+ul{
+    list-style-type: none;
+}
+
+.major{
+    display:block;
+    width:100px;
+    height:50px;
+    position:absolute;
+    left:20px;
+}
+
+#lip{
+    top:10px;
+}
+
+#eye{
+    top:25px;
+}
+
+#face{
+    top:40px;
+}
+.minor{
+    display:none;
+    width:200px;
+    height:200px;
+    position:relative;
+    right:-100px;
+}
+.major li:hover{
+    border:1px solid grey;
+}
+.minor li:hover{
+    background-color:darkgray;
+}
+.error{
+    color:red;
+    font-size:15px;
+    display:block;
+    margin:0 0 0 200px;
+}
+#imgContent img,#previewContent img{
+    width:100px;
+    height:100px;
+    display:inline-block;
+    margin:10px;
+}
+
+#content{
+    margin:30px;
+    padding:20px;
+    width:800px;
+}
+
+input[name="submit"]{
+    display:inline-block;
+    width:100px;
+    height:30px;
+    margin:100px auto 100px 400px ;
+}
+
+input[name='back']{
+    display:inline-block;
+    margin-top:100px;
+}

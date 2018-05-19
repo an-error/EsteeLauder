@@ -1,7 +1,7 @@
 <?php
     include("module.php");
     include("conn.php");
-    $statement=$db->query("select * from production");
+    $statement=$db->query("select * from production where isDelete is null");
     $statement=$statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -10,34 +10,7 @@
 <head>
 <meta charset="utf-8">
 <title>无标题文档</title>
-    <style>
-        .tab{
-            display:block;
-            margin:auto;
-            margin-top:50px;
-            height:auto;
-            border:none;
-            table-layout:fixed;
-        }
-
-        .tab td,.tab th{
-            border-collapse: collapse;
-            border:1px solid #dfe0e1;
-            text-align:center;
-            height:40px;
-            word-break:keep-all;
-            white-space:nowrap;
-            overflow:hidden;
-            text-overflow:ellipsis;
-
-        }
-        fieldset{
-            display:block;
-            margin:30px auto;
-            width:90%;
-
-        }
-    </style>
+    <link href="../style/productionList.css" rel="stylesheet"/>
 </head>
 
 <body>

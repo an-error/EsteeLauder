@@ -1,0 +1,186 @@
+#anchor ul{
+    list-style-type: none;
+    width:200px;
+    height:250px;
+    position:fixed;
+    top:280px;
+    left:6%;
+}
+
+#anchor li {
+    line-height: 35px;
+    font-size:16px;
+}
+
+#content{
+    width:1100px;
+    margin:150px auto 70px 22%;
+}
+
+#order li{
+    display:inline-block;
+    width:160px;
+    text-align: center;
+    border-right:1px solid #f5f8fa;
+//margin-right:100px;
+}
+
+#order li:nth-child(4){
+    border-right:none;
+}
+#order .user-name{
+
+    height:70px;
+    background-color: #f5f8fa;
+    line-height: 60px;
+    padding:10px;
+}
+
+#order .user-name i{
+    font-size:30px;
+}
+
+#order .user-name span{
+    margin-left:10px;
+}
+
+#order .nav{
+    border:1px solid #f5f8fa;
+    padding:20px;
+    margin-bottom:100px;
+}
+  .order-content{
+      width:1000px;
+      height:auto;
+      margin:200px auto 100px auto;
+  //padding:30px;
+      border:1px solid #dfe0e1;
+  }
+
+
+.order-content img{
+    width:100px;
+    height:120px;
+}
+
+.order-content table span{
+    display:inline-block;
+    width:20px;
+    height:20px;
+    margin-right:20px;
+}
+
+.order-content table td{
+    text-align: center;
+    border-bottom:1px solid #dfe0e1 ;
+    padding:20px;
+}
+.order-content table thead td{
+    height:40px;
+}
+
+.order-content .right{
+    font-size:18px;
+    display: block;
+    margin:40px auto 50px 570px;
+}
+
+
+.order-content h4{
+    margin-bottom:30px;
+}
+
+.order-tip{
+    color:red;
+    margin-left:15px;
+}
+
+.order-content input{
+    width:100px;
+    height:30px;
+    color:white;
+    background-color: #265a88;
+    border:none;
+    margin-left:50px;
+    font-size:15px;
+}
+
+#userInformation{
+    width:600px;
+    height:500px;
+    border:1px solid #dfe0e1 ;
+    display:none;
+    margin-left:250px;
+    padding:50px;
+    line-height: 30px;
+    font-size:18px;
+}
+
+#userInformation span{
+    display:inline-block;
+    width:150px;
+    text-align:right;
+    margin-right:30px;
+}
+
+#userInformation p{
+    margin-bottom:20px;
+}
+
+#userInformation input[name='revise']{
+    width:100px;
+    height:30px;
+    border:none;
+    background-color: #265a88;
+    color:white;
+    margin:100px auto  auto  230px;
+}
+
+
+#userInformation .password2{
+    display:none;
+}
+
+#userInformation i{
+    font-size: 12px;
+    color:red;
+}
+
+.basic{
+    width:1000px;
+    height:40px;
+    background:#dfe0e1;
+    padding-left:30px;
+}
+
+.basic span{
+    margin-right:30px;
+    line-height:40px;
+}
+
+.addCss{
+    width:1000px;
+    height:auto;
+    margin:200px auto 100px auto;
+    border:1px solid #dfe0e1;
+}
+.padding{
+
+    padding:30px;
+}
+
+.fake-comment{
+    position:relative;
+}
+
+.fake-comment input[name="comment"]{
+    opacity: 0;
+    z-index:7;
+}
+.fake-comment .icon-pingjia{
+    font-size:40px;
+    color:grey;
+    position:absolute;
+    left:140px;
+    top:-10px;
+}

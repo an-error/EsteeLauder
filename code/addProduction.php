@@ -16,119 +16,7 @@ include('conn.php');
 <head>
     <meta charset="utf-8">
     <title>添加商品</title>
-    <style>
-
-
-        .radio img{
-            width:100px;
-            height:100px;
-        }
-
-        .radio{
-            width:160px;
-            height:160px;
-            float:left;
-            margin-left:40px;
-
-        }
-
-
-        ul{
-            list-style-type: none;
-        }
-
-        .major{
-            display:block;
-            width:100px;
-            height:50px;
-            position:absolute;
-            left:20px;
-        }
-
-        #lip{
-            top:10px;
-        }
-
-        #eye{
-            top:25px;
-        }
-
-        #face{
-            top:40px;
-        }
-        .minor{
-            display:none;
-            width:200px;
-            height:200px;
-            position:relative;
-            right:-100px;
-        }
-        .major li:hover{
-            border:1px solid grey;
-        }
-        .minor li:hover{
-            background-color:darkgray;
-        }
-        .error{
-            color:red;
-            font-size:15px;
-            display:block;
-            margin:0 0 0 200px;
-        }
-        #imgContent img,#imgContent2 img{
-            width:100px;
-            height:100px;
-            display:inline-block;
-            margin:10px;
-        }
-
-        .img-preview{
-            width:100px;
-            height:100px;
-            display:inline-block;
-            margin:10px;
-            position:relative;
-        }
-        .img-preview span{
-            position:absolute;
-            top:8px;
-            left:10px;
-            color:grey;
-        }
-        .img-preview img{
-            width:100px;
-            height:100px;
-        }
-
-        .img-preview span:hover{
-            color:red;
-        }
-
-        #content{
-            margin:30px auto;
-            padding:20px;
-            width:1000px;
-            position:relative;
-        }
-
-        input[name="submit"]{
-            display:block;
-            width:100px;
-            height:30px;
-            margin:100px 26% auto auto;
-        }
-
-        input[name='pName']{
-            display:block;
-            width:350px;
-            height:30px;
-            margin-bottom: 50px;
-        }
-        fieldset{
-            display:block;
-            margin:20px;
-        }
-    </style>
+    <link href="../style/addProduction.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -143,8 +31,8 @@ include('conn.php');
     <fieldset>
         <legend>商品品牌：</legend>
         <div class="radio">
-            <input type="radio" id="radio1" name="brand" value="EsteeLauder" checked/>
-            <label for="radio1"><img src="../image/esteeLauder.jpeg" /> </label>
+            <input type="radio" id="radio1" name="brand" value="her" checked/>
+            <label for="radio1"><img src="../image/152543745182553.jpg" /> </label>
         </div>
 
         <!--<div class="radio">
@@ -155,8 +43,8 @@ include('conn.php');
         <div class="radio">
             <input type="radio" id="radio3" name="brand" value="Bobbi Brown"/>
             <label for="radio3"><img src="../image/bobbiBrown.jpg" /> </label>
-        </div>-->
-
+        </div>
+-->
     </fieldset>
    <fieldset>
        <legend>分类：<span id="cateText"></span><span class="error" id="categories"></span></legend>
@@ -220,144 +108,6 @@ include('conn.php');
 
 <div id="text"></div>
 <script id="win"></script>
-<script>
-//图片预览
-    function preview(target){
-        var length=0;
-        if(target.name==="pic"){
-            var imgContent=document.getElementById('imgContent');
-            imgContent.innerHTML="";
-            var reader=new FileReader();
-            reader.readAsDataURL(target.files[length]);
-            reader.onload=function(){
-                imgContent.innerHTML="<img src='"+this.result+"'/>";
-                length++;
-                if(length<target.files.length){
-                    reader.readAsDataURL(target.files[length]);
-                }
-
-            }
-        }else{
-            var imgContent=document.getElementById('imgContent2');
-            imgContent.innerHTML="";
-            var reader=new FileReader();
-            reader.readAsDataURL(target.files[length]);
-            reader.onload=function(){
-                imgContent.innerHTML+="<div class='img-preview'><img src='"+this.result+"'/><span>x</span></div>";
-                length++;
-                if(length<target.files.length){
-                    reader.readAsDataURL(target.files[length]);
-                }
-
-            }
-        }
-
-    }
-
-    var delFilesIndex=[];
-
-    $("#imgContent2").on("click ",".img-preview span",function(){
-        $(this.parentNode).css("display","none");
-        delFilesIndex.push($("#imgContent2 .img-preview").index(this.parentNode));
-    });
-
-
-//分类
-    var categories="";
-
-    function setNone(className){
-        var arr=document.getElementsByClassName(className);
-        for(var i=0;i<arr.length;i++){
-            arr[i].style.cssText="display:none";
-        }
-    }
-
-    function over(id){
-       setNone("minor");
-        var li=document.getElementById(id);
-        li.style.cssText="display:block";
-    }
-
-    function down(str){
-        categories=str;
-        document.getElementById("cateText").innerHTML=str;
-       /* setNone("minor");
-        setNone("major");*/
-    }
-//ajax
-
-function isInArray(index,delIndex){
-        for(var i=0;i<delIndex.length;i++){
-            if(index===delIndex[i]){
-                return true;
-            }
-        }
-        return false;
-}
-
-function getFilesDate(){
-    var files=$("input[name='files']")[0].files;
-    var filesData=[];
-    for(var i=0;i<files.length;i++){
-        if(!isInArray(i,delFilesIndex)){
-            filesData.push(files[i]);
-        }
-    }
-    return filesData;
-}
-    document.getElementsByName("submit")[0].onclick=function(){
-        var form=document.getElementsByTagName("form")[0];
-        var formData=new FormData(form);
-        var brand=$("input[name='brand']:checked").val();
-        formData.append("brand",brand);
-        formData.append("categories",categories);
-
-        var files=getFilesDate();
-        if(files.length>4){
-            alert("只能上传四张图片！多余的图片无效！！")
-        }
-        for (var i=0;i<files.length;i++){
-            formData.append('img'+i,files[i]);
-        }
-        var xhr=new XMLHttpRequest();
-        xhr.onreadystatechange=function(){
-            if(this.readyState===4){
-                var result=JSON.parse(this.responseText);
-               var error=result['error'];
-                if(error.length!==0){
-
-                        if(error['file']){
-                            document.getElementById('myFile').innerText=error['file'];
-                            if(error['files']){
-                                document.getElementById('myFile').innerText+=error['files'];
-                            }
-                        }
-                        if(error['pName']){
-                            document.getElementById('goodsName').innerText=error['pName'];
-                        }
-                        if(error['categories']){
-                            document.getElementById('categories').innerText=error['categories'];
-                        }
-                        if(error['files']){
-                            document.getElementById('myFile').innerText=error['files'];
-                        }
-                        if(error['size']){
-                            document.getElementById('size').innerText=error['size'];
-                        }
-
-                }else{
-                        window.location="addProductionAtrr.php?id="+result['id'];
-                }
-            }
-        };
-
-        xhr.open("post","addProductionCheck.php",true);
-        xhr.send(formData);
-
-    }
-
-
-
-</script>
+<script src="../js/addProduction.js"></script>
 </body>
 </html>

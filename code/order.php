@@ -7,7 +7,7 @@
  */
 
 include("conn.php");
-//include("minHeader.php");
+include("minHeader.php");
 
 session_start();
 if(!$_REQUEST['id']){
@@ -18,7 +18,6 @@ if(!$_REQUEST['id']){
 }
 
 print_r($_SESSION['orderID']);
-echo $orderID;
 
 
 
@@ -78,54 +77,7 @@ print_r($name);*/
 <head>
     <meta charset="utf-8">
     <title>无标题文档</title>
-    <style>
-        body{
-            width:100%;
-            height:100%;
-        }
-        .content{
-            width:1000px;
-            height:auto;
-            margin:200px auto 50px auto;
-            padding:30px;
-            border:1px solid #dfe0e1;
-        }
-
-        .content img{
-            width:100px;
-            height:120px;
-        }
-
-        table span{
-            display:inline-block;
-            width:20px;
-            height:20px;
-            margin-right:20px;
-        }
-
-        table td{
-            text-align: center;
-            border-bottom:1px solid #dfe0e1 ;
-            padding:20px;
-        }
-        table thead td{
-            height:40px;
-        }
-
-        .right{
-            font-size:20px;
-            display: block;
-            margin:40px auto 50px 650px;
-        }
-
-        .backToShopping{
-            display: block;
-            margin:auto auto 100px 70%;
-        }
-        .content h4{
-            margin-bottom:30px;
-        }
-    </style>
+    <link href="../style/order.css" rel="stylesheet"/>
 </head>
 
 <body>

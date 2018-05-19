@@ -9,13 +9,41 @@
 
 include("conn.php");
 
-$production=$_POST;
+$production=array();
 
-$pname=$_POST['title1'].$_POST['title2'];
-$sql="select id from production where name='".$pname."'";
-$statement=$db->query($sql);
-$pid=$statement->fetch(PDO::FETCH_ASSOC);
-$pid=$pid['id'];
+if($_POST['title1']){
+    $production=$_POST;
+    $pname=$_POST['title1'].$_POST['title2'];
+    $sql="select id from production where name='".$pname."'";
+    $statement=$db->query($sql);
+    $pid=$statement->fetch(PDO::FETCH_ASSOC);
+    $pid=$pid['id'];
+    //print_r($production);
+}else{
+    $pid=$_POST['pid'];
+    $colour_num=$_POST['colour_num'];
+    $sql="select * from production where id='".$pid."'";
+    $statement=$db->query($sql);
+    $result=$statement->fetch(PDO::FETCH_ASSOC);
+    $pname=$result['name'];
+    preg_match('#[a-zA-Z\s+\d/.]*#',$result['name'],$matches);
+    $production['title1']=$matches[0];
+    $production['title2']=substr($result['name'],strlen($matches[0]));
+    $production['img']=$result['img'];
+    $production['size']=$result['size'];
+    $sql="select * from productionattr where colour_num='".$colour_num."' and pid='".$pid."'";
+    $statement=$db->query($sql);
+    $result=$statement->fetch(PDO::FETCH_ASSOC);
+    $production['price']=$result['price'];
+    $production['stock']=$result['stock'];
+    $production['colour_name']=$result['colour_name'];
+    $production['colour_num']=$colour_num;
+    $production['count']=1;
+    //print_r($production);
+}
+
+
+
 $idInCart=array();
 session_start();
 
@@ -49,7 +77,7 @@ function setHTML($id,$count){
 
 
 if($pname){
-    if(!$_POST['stock']){
+    if((!$_POST['stock'] && $_POST['title1']) || $production['colour_num']=="#ffffff"){
         $id=$pname.'_'."#ffffff";
         if(in_array($id,$idInCart)){
             if($_SESSION['cart'][$id]['count']<6 && $_SESSION['cart'][$id]['count']<$_SESSION['cart'][$id]['stock']){

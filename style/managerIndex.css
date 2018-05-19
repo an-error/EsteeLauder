@@ -1,0 +1,162 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color:#cbd3d6;
+    /* rgba(67,85,135,0.5) rgba(230,230,230,0.5) #2c343c*/
+    font-family: FangSong;
+}
+
+#logo {
+    width: 220px;
+    height: 80px;
+    display: block;
+    float: left;
+    box-shadow: 5px 5px 10px rgb(67, 85, 135);
+    z-index: 100;
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+}
+
+#search {
+    position: absolute;
+    width: 280px;
+    height: 40px;
+    right: 50px;
+    top: 20px;
+}
+
+input[name="search"] {
+    display: block;
+    height: 40px;
+    width: 280px;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 1px 1px 2px rgb(67, 85, 135);
+    border: 1px solid rgba(207, 207, 207, 1.00);
+    text-align: center;
+    margin-right: -10px;
+}
+
+.search {
+    display: block;
+    position: absolute;
+    left: 8px;
+    top: 5px;
+    font-size: 27px;
+    z-index: 100;
+    color: rgba(214, 214, 214, 1.00);
+}
+
+#name {
+    position: absolute;
+    top: 60px;
+    left: 280px;
+    font-family: FZShuTi ;
+}
+
+#accordion2 {
+    width:100%;
+    height:700px;
+    padding:0 0 0 220px;
+    margin-top:20px;
+    box-sizing: border-box;
+}
+.nav {
+    width: 220px;
+    height: 100%;
+    margin:0 0 0 -200px;
+    /*position: absolute;
+    left: 0;
+    top: 120px;*/
+    background-color: rgba(252, 252, 252, 1.00);
+    padding:20px;
+}
+
+iframe{
+    position:absolute;
+    right:30px;
+    top:100px;
+    width:82%;
+    height:720px;
+    background-color:rgba(252, 252, 252, 1.00);
+    border-radius: 10px;
+}
+
+.accordion-heading a{
+    display:block;
+    margin:10px;
+    width:100%;
+    font-size:17px;
+}
+.accordion-body a{
+    display:block;
+    padding-left:60px;
+}
+
+.icon-logout{
+    font-size:30px;
+    position:absolute;
+    right:5px;
+    top:20px;
+}
+
+#collapsetwo .accordion-inner ul{
+    list-style-type: none;
+}
+
+#collapsetwo .accordion-inner ul li{
+    height:40px;
+    line-height: 40px;
+}
+
+#nav{
+    position:absolute;
+    top:100px;
+    left:0;
+    width:220px;
+    height:720px;
+    background-color: white;
+}
+nav{
+    margin-top:100px;
+}
+
+nav li>span{
+    display:inline-block;
+    width:200px;
+    height:auto;
+    padding-left:10px;
+    font-size:16px;
+    color:#337ab7;
+    line-height: 40px;
+    border-bottom:1px solid #dfe0e1;
+    background: white;
+}
+
+.secondary{
+    list-style-type: none;
+    display:none;
+    width:220px;
+    background-color: white;
+}
+
+.secondary span{
+    padding-left:50px;
+}
+
+#nav span:hover a{
+    text-decoration: none;
+    color:black;
+}
+
+#nav span:hover {
+    color:black;
+}
+
